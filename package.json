@@ -1,0 +1,41 @@
+{
+  "name": "teamsight-api",
+  "version": "1.0.0",
+  "description": "api for teamsight app",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nnh242/API-for-Team-Sight.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "Ngoc Tina Hoang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nnh242/API-for-Team-Sight/issues"
+  },
+  "homepage": "https://github.com/nnh242/API-for-Team-Sight#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "json-parser": "^1.1.5",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.6",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0",
+    "passport-jwt": "^3.0.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^4.0.1"
+  }
+}
