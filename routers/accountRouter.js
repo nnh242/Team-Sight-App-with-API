@@ -81,8 +81,8 @@ return Account.find({ username })
     }
     });
 }
-//api/accounts/register endpoint
-//CREATE new account
+//POST to '/api/accounts/register' endpoint
+//CREATE a new account
 router.post('/register', jsonParser, (req,res) => {
     const requiredFields = ['username', 'password', 'teamname'];
     const missingField= requiredFields.find(field => !(field in req.body));
@@ -127,7 +127,7 @@ router.post('/register', jsonParser, (req,res) => {
             return res.status(err.code).json(err);
         });
 })
-
+//GET api/accounts/:id
 router.get('/:id',jwtAuth,(req,res) => {
     Account
     .findById(req.params.id)

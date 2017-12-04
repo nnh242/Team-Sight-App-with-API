@@ -1,6 +1,6 @@
 'use strict';
 require ('dotenv').config();
-const {PORT, DATABASE_URL} = require('./config');
+const {PORT, DATABASE_URL, JWT_SECRET} = require('./config');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -56,6 +56,8 @@ app.use(function(req, res, next) {
   }
   next();
 });
+const passport = require('passport');
+const {localStrategy, jwtStrategy }= require ('./auth/strategies');
 
 //passport authentication
 app.use(passport.initialize());
