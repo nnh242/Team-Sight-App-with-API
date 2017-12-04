@@ -30,6 +30,10 @@ app.use('/api/accounts', accountRouter);
 //app.use('/api/actuals', actualRouter);
 app.use('api/auth/login', authRouter);
 
+app.get('/api/*', (req, res) => {
+  res.json({ok: true});
+});
+
 //catching all unintended endpoints
 app.use('*', function (req,res) {
   res.status(404).json({message:'Not Found'});
