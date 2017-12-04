@@ -18,12 +18,17 @@ const accountRouter = require('./routers/accountRouter');
 // const memberRouter = require('./routers/memberRouter');
 // const estimateRouter = require('./routers/estimateRouter');
 // const actualRouter = require('./routers/actualRouter');
+const authRouter=require('./auth/authRouter');
+
+//serving static assets in public folder
+app.use(express.static('public'));
 
 //routes to endpoints
 app.use('/api/accounts', accountRouter);
 //app.use('/api/members',memberRouter)
 //app.use('/api/estimates', estimateRouter);
 //app.use('/api/actuals', actualRouter);
+app.use('api/auth/login', authRouter);
 
 //catching all unintended endpoints
 app.use('*', function (req,res) {
@@ -48,8 +53,10 @@ app.use(function(req, res, next) {
   next();
 });
 
-//serving static assets in public folder
-app.use(express.static('public'));
+//passport authentication
+app.use(passport.initialize());
+passport.use('local',localStrategy);
+passport.use('jwt', jwtStrategy);
 
 // run server and close server function for tests
 let server;
