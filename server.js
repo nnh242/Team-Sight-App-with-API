@@ -1,12 +1,92 @@
+'use strict';
+require ('dotenv').config();
+const {PORT, DATABASE_URL} = require('./config');
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
-const PORT = process.env.PORT || 3000;
+//LOGGING
+const morgan = require('morgan');
+app.use(morgan('common'));
 
-app.get('/api/*', (req, res) => {
-  res.json({ok: true});
+//MONGOOSE
+const mongoose = require ('mongoose');
+mongoose.Promise = global.Promise;
+
+//routers
+const accountRouter = require('./routers/accountRouter');
+// const memberRouter = require('./routers/memberRouter');
+// const estimateRouter = require('./routers/estimateRouter');
+// const actualRouter = require('./routers/actualRouter');
+
+//routes to endpoints
+app.use('/api/accounts', accountRouter);
+//app.use('/api/members',memberRouter)
+//app.use('/api/estimates', estimateRouter);
+//app.use('/api/actuals', actualRouter);
+
+//catching all unintended endpoints
+app.use('*', function (req,res) {
+  res.status(404).json({message:'Not Found'});
 });
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+// CORS
+const cors = require('cors');
+const {CLIENT_ORIGIN} = require('./config');
+app.use(
+    cors({
+        origin: CLIENT_ORIGIN
+    })
+);
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+      return res.send(204);
+  }
+  next();
+});
 
-module.exports = {app};
+//serving static assets in public folder
+app.use(express.static('public'));
+
+// run server and close server function for tests
+let server;
+function runServer(databaseUrl=DATABASE_URL, port=PORT) {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(databaseUrl, {useMongoClient: true}, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(port, () => {
+        console.log(`Your app is listening on port ${port}`);
+        resolve();
+      })
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
+    });
+  });
+}
+  
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+      return new Promise((resolve, reject) => {
+        console.log('Closing server');
+        server.close(err => {
+            if (err) {
+                return reject(err);
+            }
+            resolve();
+        });
+      });
+  });
+}
+
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+};
+
+module.exports = {app, runServer, closeServer};
