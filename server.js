@@ -15,20 +15,16 @@ mongoose.Promise = global.Promise;
 
 //routers
 const accountRouter = require('./routers/accountRouter');
-// const memberRouter = require('./routers/memberRouter');
-// const estimateRouter = require('./routers/estimateRouter');
-// const actualRouter = require('./routers/actualRouter');
-const authRouter=require('./auth/authRouter');
+const memberRouter = require('./routers/memberRouter');
+const authRouter= require('./auth/authRouter');
 
 //serving static assets in public folder
 app.use(express.static('public'));
 
 //routes to endpoints
 app.use('/api/accounts', accountRouter);
-//app.use('/api/members',memberRouter)
-//app.use('/api/estimates', estimateRouter);
-//app.use('/api/actuals', actualRouter);
-app.use('api/auth/login', authRouter);
+app.use('/api/members',memberRouter)
+app.use('/api/auth/login', authRouter);
 
 app.get('/api/*', (req, res) => {
   res.json({ok: true});
