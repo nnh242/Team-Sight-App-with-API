@@ -16,7 +16,7 @@ describe('Account API', function() {
     const teamname = 'TeamA';
     const usernameB = 'testUserB';
     const passwordB = 'testPasswordB';
-    const teamname = 'TeamB';
+    const teamnameB = 'TeamB';
 
     before(function() {
         return runServer(TEST_DATABASE_URL);

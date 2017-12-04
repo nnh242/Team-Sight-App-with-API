@@ -10,10 +10,10 @@ const jwtAuth = passport.authenticate('jwt', {session:false});
 const catchError = (err,res) => {
     return res.status(500).json({error:'Something went wrong in the server'})
 }
-function validateUserFields(user) {
+function validateUserFields(account) {
     const stringFields = ['username', 'password', 'teamname'];
     const nonStringField = stringFields.find(
-        field => field in user && typeof user[field] !== 'string'
+        field => field in account && typeof account[field] !== 'string'
     );
 
     if (nonStringField) {
@@ -27,7 +27,7 @@ function validateUserFields(user) {
 
     const explicityTrimmedFields = ['username', 'password'];
     const nonTrimmedField = explicityTrimmedFields.find(
-        field => user[field].trim() !== user[field]
+        field => account[field].trim() !== account[field]
     );
 
     if (nonTrimmedField) {
@@ -45,11 +45,11 @@ function validateUserFields(user) {
     };
     const tooSmallField = Object.keys(sizedFields).find(field =>
         'min' in sizedFields[field] &&
-        user[field].trim().length < sizedFields[field].min
+        account[field].trim().length < sizedFields[field].min
     );
     const tooLargeField = Object.keys(sizedFields).find(field =>
         'max' in sizedFields[field] &&
-        user[field].trim().length > sizedFields[field].max
+        account[field].trim().length > sizedFields[field].max
     );
 
     if (tooSmallField || tooLargeField) {
@@ -64,69 +64,53 @@ function validateUserFields(user) {
     }
     return { valid: true };
 }
-  
-function confirmUniqueUsername(username) {
-return Account.find({ username })
-    .count()
-    .then(count => {
-    if (count > 0) {
-        return Promise.reject({
-        code: 422,
-        reason: 'ValidationError',
-        message: 'Username already takken',
-        location: 'username'
-        });
-    } else {
-        return Promise.resolve();
-    }
-    });
-}
 //POST to '/api/accounts/register' endpoint
 //CREATE a new account
-router.post('/register', jsonParser, (req,res) => {
+router.post('/register', jsonParser, (req, res) => {
     const requiredFields = ['username', 'password', 'teamname'];
-    const missingField= requiredFields.find(field => !(field in req.body));
-    if(missingField) {
-        return res.status(422).json({
-            code:422,
-            reason: 'Validation Error',
-            message:'Missing field',
-            location: missingField
-        });
+    const missingField = requiredFields.find(field => !(field in req.body));
+    if (missingField) {
+      return res.status(422).json({
+        code: 422,
+        reason: 'ValidationError',
+        message: 'Missing field',
+        location: missingField
+      });
     }
-    let accountValid = {};
+  
+    let userValid = {};
     if (validateUserFields(req.body).valid === true) {
-        accountValid = req.body;
-      } else {
-        let code = validateUserFields(req.body).code || 422;
-        return res.status(code).json(validateUserFields(req.body));
-      }
-    
-      let { username, password, teamname} = accountValid;
-    
-      return Account.find({ username })
-        .count()
-        .then(count => {
-          if (count > 0) {
-            return Promise.reject({
-              code: 422,
-              reason: 'ValidationError',
-              message: 'Username already taken',
-              location: 'username'
-            });
-          }
-          return Account.hashPassword(password);
-        })
-        .then(hash => {
-          return Account.create({ username, password: hash, teamName});
-        })
-        .then(account => {
-          return res.status(201).json(account.apiRepr());
-        })
-        .catch(err => {
-            return res.status(err.code).json(err);
-        });
-})
+      userValid = req.body;
+    } else {
+      let code = validateUserFields(req.body).code || 422;
+      return res.status(code).json(validateUserFields(req.body));
+    }
+  
+    let { username, password, teamname} = userValid;
+  
+    return Account.find({ username })
+      .count()
+      .then(count => {
+        if (count > 0) {
+          return Promise.reject({
+            code: 422,
+            reason: 'ValidationError',
+            message: 'Username already taken',
+            location: 'username'
+          });
+        }
+        return Account.hashPassword(password);
+      })
+      .then(hash => {
+        return Account.create({ username, password: hash, teamname});
+      })
+      .then(account => {
+        return res.status(201).json(account.apiRepr());
+      })
+      .catch(err => {
+          return res.status(err.code).json(err);
+      });
+  });
 //GET api/accounts/:id
 router.get('/:id',jwtAuth,(req,res) => {
     Account
