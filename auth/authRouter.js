@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 //create a jwt token when client sends username and password
 const createAuthToken = account => {
-    return jwt.sign({account}, config.JWT_SECRET, {
-        subject: account.username,
+    return jwt.sign({user}, config.JWT_SECRET, {
+        subject: user.username,
         expiresIn: config.JWT_EXPIRY,
         algorithm: 'HS256'
     });
