@@ -17,6 +17,7 @@ mongoose.Promise = global.Promise;
 const accountRouter = require('./routers/accountRouter');
 const memberRouter = require('./routers/memberRouter');
 const authRouter= require('./auth/authRouter');
+const taskRouter = require('./routers/taskRouter');
 
 //serving static assets in public folder
 app.use(express.static('public'));
@@ -25,6 +26,7 @@ app.use(express.static('public'));
 app.use('/api/accounts', accountRouter);
 app.use('/api/members',memberRouter)
 app.use('/api/auth', authRouter);
+app.use('/api/accounts/:id/members/:id/tasks', taskRouter)
 
 app.get('/api/*', (req, res) => {
   res.json({ok: true});
