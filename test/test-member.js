@@ -11,8 +11,6 @@ const {JWT_SECRET} = require('../config');
 let test_token = "";
 chai.use(chaiHttp);
 
-let test_token = "";
-
 function seedItemData() {
   console.info('seeding member data');
   const seedData = [];

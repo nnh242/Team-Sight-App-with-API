@@ -4,7 +4,8 @@ const {PORT, DATABASE_URL, JWT_SECRET} = require('./config');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
+const jsonParser = bodyParser.json();
+app.use(bodyParser.urlencoded({ extended: true }));
 //LOGGING
 const morgan = require('morgan');
 app.use(morgan('common'));
@@ -21,21 +22,6 @@ const taskRouter = require('./routers/taskRouter');
 
 //serving static assets in public folder
 app.use(express.static('public'));
-
-//routes to endpoints
-app.use('/api/accounts', accountRouter);
-app.use('/api/members',memberRouter)
-app.use('/api/auth', authRouter);
-app.use('/api/accounts/:id/members/:id/tasks', taskRouter)
-
-app.get('/api/*', (req, res) => {
-  res.json({ok: true});
-});
-
-//catching all unintended endpoints
-app.use('*', function (req,res) {
-  res.status(404).json({message:'Not Found'});
-});
 
 // CORS
 const cors = require('cors');
@@ -55,12 +41,23 @@ app.use(function(req, res, next) {
   next();
 });
 const passport = require('passport');
-const {localStrategy, jwtStrategy }= require ('./auth/strategies');
+const {localStrategy,jwtStrategy} = require ('./auth/strategies');
 
 //passport authentication
 app.use(passport.initialize());
 passport.use('local',localStrategy);
 passport.use('jwt', jwtStrategy);
+
+//routes to endpoints
+app.use('/api/accounts', accountRouter);
+app.use('/api/members',memberRouter)
+app.use('/api/auth', authRouter);
+app.use('/api/accounts/:id/members/:id/tasks', taskRouter)
+
+//catching all unintended endpoints
+app.use('*', function (req,res) {
+  res.status(404).json({message:'Not Found'});
+});
 
 // run server and close server function for tests
 let server;

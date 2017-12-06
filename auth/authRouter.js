@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 //create a jwt token when client sends username and password
 const createAuthToken = account => {
-    return jwt.sign({user}, config.JWT_SECRET, {
-        subject: user.username,
+    return jwt.sign({account}, config.JWT_SECRET, {
+        subject: account.username,
         expiresIn: config.JWT_EXPIRY,
         algorithm: 'HS256'
     });
@@ -14,9 +14,11 @@ const createAuthToken = account => {
 const router = express.Router();
 // this is endpoint api/auth/login, username and pw are used to create token
 router.post('/login',
-    passport.authenticate('local', {session: false}),
+    passport.authenticate('local'),
     (req, res) => {
+        console.log(req.user);
         const authToken = createAuthToken(req.account.apiRepr());
+        
         res.json({authToken: authToken, account: req.account}); 
     }
 );
