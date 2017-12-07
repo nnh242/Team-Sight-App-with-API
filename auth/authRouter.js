@@ -16,17 +16,15 @@ const router = express.Router();
 router.post('/login',
     passport.authenticate('local'),
     (req, res) => {
-        console.log(req.user);
-        const authToken = createAuthToken(req.account.apiRepr());
-        
-        res.json({authToken: authToken, account: req.account}); 
+        const authToken = createAuthToken(req.user);
+        res.json({authToken: authToken, account: req.user}); 
     }
 );
 // this is endpoint api/auth/refresh
 router.post('/refresh',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
-        const authToken = createAuthToken(req.account);
+        const authToken = createAuthToken(req.user);
         res.json({authToken}); 
     }
 );

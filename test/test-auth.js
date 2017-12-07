@@ -78,11 +78,16 @@ describe('Auth endpoints', function() {
             return chai
                 .request(app)
                 .post('/api/auth/login')
-                .auth(username, password)
+                //.auth('testUser','testPassword')
+                .set('content-type','application/x-www-form-urlencoded')
+                .send('username=testUser')
+                .send('password=testPassword')
                 .then(res => {
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.an('object');
+                    console.log(res);
                     const token = res.body.authToken;
+                    console.log(token);
                     expect(token).to.be.a('string');
                     const payload = jwt.verify(token, JWT_SECRET, {
                         algorithm: ['HS256']

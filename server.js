@@ -47,6 +47,13 @@ const {localStrategy,jwtStrategy} = require ('./auth/strategies');
 app.use(passport.initialize());
 passport.use('local',localStrategy);
 passport.use('jwt', jwtStrategy);
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 //routes to endpoints
 app.use('/api/accounts', accountRouter);

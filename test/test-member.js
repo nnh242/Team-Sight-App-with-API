@@ -3,7 +3,9 @@ const chaiHttp = require('chai-http');
 const mongoose = require('mongoose');
 const should = chai.should();
 const expect = chai.expect;
+const faker = require('faker');
 const {Member} = require('../models/member');
+const {Account} = require('../models/account');
 const {app, runServer, closeServer} = require('../server');
 const{TEST_DATABASE_URL} = require('../config');
 const jwt = require('jsonwebtoken');
@@ -25,7 +27,7 @@ function seedItemData() {
 function generateTestItem() {
   return {
     name: faker.random.words(),
-    accountId: userId
+    accountId: Member.accountId
   }
 }
 
@@ -39,19 +41,29 @@ describe('Members API resource', function() {
     return runServer(TEST_DATABASE_URL);
   });
 
-  beforeEach(function() {
-      return chai.request(app)
-          .post('/api/account/register')
-          .send({username:"testB", password:"1234567890", teamName:"TestB"})
-          .then(function(res) {
-            userId = res.body.id; 
-            console.log(userId);
-            return chai.request(app).post('/api/auth/login')
-                     .send({username:"testB", password:"1234567890"})
-                     .then(function(res){test_token = res.body.authToken;})})
-          .then(function(){return seedItemData()});
-    });
-  
+  beforeEach( function(){
+    let username = 'testB';
+    let password = 'testPasswordB';
+    let teamname = 'teamTestB';
+    return Account.hashPassword(password).then(password =>
+      Account.create({
+          username,
+          password,
+          teamname
+      })
+      .then (function(){
+        return chai.request(app).post('/api/auth/login')
+        .set('content-type','application/x-www-form-urlencoded')
+        .send('username=testB')
+        .send('password=testPasswordB')
+        .then(function(res){
+          test_token=res.body.authToken;
+          return seedItemData(res);
+        })
+      })
+    );
+  });
+
   afterEach(function() {
     return tearDownDb(TEST_DATABASE_URL);
   });
@@ -89,7 +101,6 @@ describe('Members API resource', function() {
           res.should.be.json;
           res.body.members.should.be.a('array');
           res.body.members.should.have.length.of.at.least(1);
-
           res.body.members.forEach(function(member) {
             member.should.be.a('object');
             member.should.include.keys(

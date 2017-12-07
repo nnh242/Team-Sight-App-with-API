@@ -14,7 +14,7 @@ const catchError = (err,res) => {
 //this endpoint api/members is protected
 router.get('/',jwtAuth, (req, res) => {
     Member
-    .find({'accountId': req.account.id})
+    .find({'accountId': req.user.id})
     .then(members => {
         res.json({members: members.map((member => member.apiRepr()))
         });
@@ -34,7 +34,7 @@ router.post('/',jwtAuth, jsonParser, (req,res) => {
         });
     }
     Member
-    .create({name: req.body.name,  accountId:req.account.id})
+    .create({name: req.body.name,  accountId:req.user.id})
     .then(member => {
         res.status(201).json(member.apiRepr())})
     .catch((err) => {
