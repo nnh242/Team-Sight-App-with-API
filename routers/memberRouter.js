@@ -3,6 +3,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const {Member} = require('../models/member');
+const {Account} = require('../models/account');
 router.use(jsonParser);
 const passport = require ('passport');
 const  jwt = require('jsonwebtoken');
@@ -11,10 +12,10 @@ const catchError = (err,res) => {
     return res.status(500).json({error:'Something went wrong in the server'})
 }
 
-//this endpoint api/members is protected
-router.get('/',jwtAuth, (req, res) => {
+//this endpoint api/accounts/:accountId/members is protected
+router.get('/:accId/members',jwtAuth, (req, res) => {
     Member
-    .find({'accountId': req.user.id})
+    .find({'accountId': req.params.accId})
     .then(members => {
         res.json({members: members.map((member => member.apiRepr()))
         });
@@ -22,7 +23,8 @@ router.get('/',jwtAuth, (req, res) => {
       .catch(catchError);
   }); 
 
-router.post('/',jwtAuth, jsonParser, (req,res) => {
+router.post('/:accId/members',jwtAuth, jsonParser, (req,res) => {
+    console.log(req.params);
     const requiredFields = ['name'];
     const missingField = requiredFields.find(field => !(field in req.body));
     if (missingField) {
@@ -34,7 +36,7 @@ router.post('/',jwtAuth, jsonParser, (req,res) => {
         });
     }
     Member
-    .create({name: req.body.name,  accountId:req.user.id})
+    .create({name: req.body.name,  accountId:req.params.accId})
     .then(member => {
         res.status(201).json(member.apiRepr())})
     .catch((err) => {
@@ -46,7 +48,7 @@ router.post('/',jwtAuth, jsonParser, (req,res) => {
 });
 
 //getting an member of the database by member's id api/members/:id
-router.get('/:id', jwtAuth, (req, res) => {
+router.get('/:accId/members/:id', jwtAuth, (req, res) => {
     Member
     .findById(req.params.id)
     .then(member => res.json(member.apiRepr()))
@@ -54,7 +56,7 @@ router.get('/:id', jwtAuth, (req, res) => {
 });
 
 //Update member by id
-router.put('/:id', jwtAuth, (req,res) => {
+router.put('/:accId/members/:id', jwtAuth, (req,res) => {
     if (req.params.id !== req.body.id) {
       console.error('Unmatched id in request and body');
       return res.status(400).send('Unmatched id in request and body');
@@ -73,7 +75,7 @@ router.put('/:id', jwtAuth, (req,res) => {
     .catch(catchError);
 });
 //DELETE end point is /api/members/:id
-router.delete('/:id', jwtAuth, (req,res) => {
+router.delete('/:accId/members/:id', jwtAuth, (req,res) => {
     Member
     .findByIdAndRemove(req.params.id)
     .then(member => res.status(204).end())

@@ -44,7 +44,6 @@ describe('Account API', function() {
                         if (err instanceof chai.AssertionError) {
                             throw err;
                         }
-
                         const res = err.response;
                         expect(res).to.have.status(422);
                         expect(res.body.reason).to.equal('ValidationError');

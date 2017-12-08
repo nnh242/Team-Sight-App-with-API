@@ -57,9 +57,9 @@ passport.deserializeUser(function(user, done) {
 
 //routes to endpoints
 app.use('/api/accounts', accountRouter);
-app.use('/api/members',memberRouter)
+app.use('/api/accounts',memberRouter)
 app.use('/api/auth', authRouter);
-app.use('/api/accounts/:id/members/:id/tasks', taskRouter)
+app.use('/api/accounts/:accountId/members/:memberId/tasks', taskRouter)
 
 //catching all unintended endpoints
 app.use('*', function (req,res) {

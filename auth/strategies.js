@@ -6,10 +6,8 @@ const {Account} = require('../models/account');
 
 const localStrategy = new LocalStrategy((username,password,callback) => {
     let account;
-    console.log('one');
     Account.findOne({username})
         .then(_account => {account=_account;
-        console.log('a');
         if(!account) {
             return Promise.reject({
                 reason: 'LoginError',
@@ -19,7 +17,6 @@ const localStrategy = new LocalStrategy((username,password,callback) => {
         return account.validatePassword(password);
     })
     .then(isValid => {
-        console.log('b');
         if (!isValid) {
             return Promise.reject({
               reason: 'LoginError',
@@ -29,7 +26,6 @@ const localStrategy = new LocalStrategy((username,password,callback) => {
           return callback(null, account)
     })
     .catch(err => {
-        console.log('c');
         if (err.reason === 'LoginError') {
           return callback(null, false, err);
         }

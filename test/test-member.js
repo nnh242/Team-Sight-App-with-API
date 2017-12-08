@@ -10,24 +10,28 @@ const {app, runServer, closeServer} = require('../server');
 const{TEST_DATABASE_URL} = require('../config');
 const jwt = require('jsonwebtoken');
 const {JWT_SECRET} = require('../config');
-let test_token = "";
-chai.use(chaiHttp);
 
-function seedItemData() {
+chai.use(chaiHttp);
+let test_token = '';
+let accountId = '';
+
+function seedMemberData() {
+  let accountId
   console.info('seeding member data');
   const seedData = [];
 
   for (let i=1; i<=10; i++) {
-    seedData.push(generateTestItem());
+    seedData.push(generateTestMember());
   }
   
   return Member.insertMany(seedData);
 }
 
-function generateTestItem() {
+function generateTestMember() {
+  let accountId
   return {
     name: faker.random.words(),
-    accountId: Member.accountId
+    accountId: accountId
   }
 }
 
@@ -51,14 +55,15 @@ describe('Members API resource', function() {
           password,
           teamname
       })
-      .then (function(){
+      .then (function(accountId){
         return chai.request(app).post('/api/auth/login')
         .set('content-type','application/x-www-form-urlencoded')
         .send('username=testB')
         .send('password=testPasswordB')
         .then(function(res){
           test_token=res.body.authToken;
-          return seedItemData(res);
+          accountId=res.body.account._id;
+          return seedMemberData(res);
         })
       })
     );
@@ -73,11 +78,11 @@ describe('Members API resource', function() {
   })
 
   describe('GET endpoint', function() {
-
     it('should return all existing members', function() {
       let res;
+      console.log(accountId);
       return chai.request(app)
-        .get('/api/members')
+        .get(`/api/accounts/${accountId}/members`)
         .set('Authorization', `Bearer ${test_token}`)
         .then(function(_res) {
           res = _res;
@@ -86,46 +91,49 @@ describe('Members API resource', function() {
           return Member.count();
         })
         .then(function(count) {
-          console.log(res.body);
           res.body.members.should.have.lengthOf(count);
         });
     });
 
     it('should return members with right fields', function() {
-      let resItem;
+      let resMember;
+      let accountId;
       return chai.request(app)
-        .get('/api/members')
+        .get('/api/accounts/:accId/members')
         .set('Authorization', `Bearer ${test_token}`)
         .then(function(res) {
           res.should.have.status(200);
           res.should.be.json;
           res.body.members.should.be.a('array');
           res.body.members.should.have.length.of.at.least(1);
+          console.log(res);
           res.body.members.forEach(function(member) {
+            console.log(member);
             member.should.be.a('object');
             member.should.include.keys(
               'id', 'name', 'accountId');
           });
-          resItem = res.body.members[0];
-          return Member.findById(resItem.id);
+          resMember = res.body.member[0];
+          accountId=res.body.account.id;
+          return Member.findById(resMember.id);
         })
         .then(function(member) {
 
-          resItem.id.should.equal(member.id);
-          resItem.name.should.equal(member.name);
-          resItem.accountId.should.equal(member.accountId+'');
+          resMember.id.should.equal(member.id);
+          resMember.name.should.equal(member.name);
+          resMember.accountId.should.equal(member.accountId);
         });
     });
   });
 
   describe('POST endpoint', function() {
     it('should add a new member', function() {
-      const newItem = generateTestItem();
+      const newMember = generateTestMember();
 
       return chai.request(app)
-        .post('/api/members')
+        .post('/api/accounts/:accId/members')
         .set('Authorization', `Bearer ${test_token}`)
-        .send(newItem)
+        .send(newMember)
         .then(function(res) {
           res.should.have.status(201);
           res.should.be.json;
@@ -133,13 +141,14 @@ describe('Members API resource', function() {
           res.body.should.include.keys(
             'id', 'name', 'accountId');
           res.body.id.should.not.be.null;
-          res.body.name.should.equal(newItem.name);
-          res.body.accountId.should.equal(newItem.accountId);         
+          res.body.name.should.equal(newMember.name);
+          res.body.accountId.should.equal(newMember.accountId); 
+          console.log(newMember);        
           return Member.findById(res.body.id);
         })
         .then(function(member) {
-          member.name.should.equal(newItem.name);
-          (member.accountId + '').should.equal(newItem.accountId +'');
+          member.name.should.equal(newMember.name);
+          (member.accountId + '').should.equal(newMember.accountId);
         });
     });
   });
@@ -155,7 +164,7 @@ describe('Members API resource', function() {
         .then(function(member) {
           updateData.id = member.id;
           return chai.request(app)
-            .put(`/api/members/${member.id}`)
+            .put(`/api/accounts/:accId/members/${member.id}`)
             .set('Authorization', `Bearer ${test_token}`)
             .send(updateData);
         })

@@ -85,9 +85,7 @@ describe('Auth endpoints', function() {
                 .then(res => {
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.an('object');
-                    console.log(res);
                     const token = res.body.authToken;
-                    console.log(token);
                     expect(token).to.be.a('string');
                     const payload = jwt.verify(token, JWT_SECRET, {
                         algorithm: ['HS256']
