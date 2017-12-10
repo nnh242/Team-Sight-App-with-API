@@ -1,13 +1,13 @@
 const mongoose = require ('mongoose');
 const taskSchema = mongoose.Schema ({
     taskName : {type:String},
-    estimateTime: {type:Number},
-    actualTime: {type:Number},
+    estimateTime: {type: String},
+    actualTime: {type: String},
     accountId: {type: mongoose.Schema.Types.ObjectId, ref: 'Account'},
     memberId: {type: mongoose.Schema.Types.ObjectId, ref: 'Member'}
 })
 
-taskSchema.methods.apiRpr = function (task) {
+taskSchema.methods.apiRepr = function (task) {
     return {
         id: this._id,
         taskName: this.taskName,

@@ -40,9 +40,6 @@ router.post('/:accId/members',jwtAuth, jsonParser, (req,res) => {
     .then(member => {
         res.status(201).json(member.apiRepr())})
     .catch((err) => {
-        return res.status(500).json({error: 'Something went wrong'});
-    })
-    .catch((err) => {
     return res.status(500).json({error: 'Something went wrong'});
     });
 });
