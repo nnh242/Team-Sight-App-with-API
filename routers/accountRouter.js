@@ -112,10 +112,10 @@ router.post('/register', jsonParser, (req, res) => {
       });
   });
 //GET api/accounts/:id
-router.get('/:id',jwtAuth,(req,res) => {
+router.get('/:accId',jwtAuth,(req,res) => {
     Account
     .findById(req.params.id)
-    .then(account => res.json(account.apiRpr()))
+    .then(account => res.json(account.apiRepr()))
     .catch(catchError);
 });
 module.exports = router;
