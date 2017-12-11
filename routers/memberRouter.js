@@ -20,7 +20,7 @@ router.get('/:accId/members',jwtAuth, (req, res) => {
         res.json({members: members.map((member => member.apiRepr()))
         });
       })
-      .catch(catchError);
+    .catch(catchError);
   }); 
 
 router.post('/:accId/members',jwtAuth, jsonParser, (req,res) => {

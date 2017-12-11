@@ -23,8 +23,9 @@ function seedMemberData() {
   for (let i=1; i<=10; i++) {
     seedData.push(generateTestMember());
   }
-  
-  return Member.insertMany(seedData);
+  let output = Member.insertMany(seedData);
+  console.log(output);
+  return output;
 }
 
 function generateTestMember() {
@@ -63,7 +64,10 @@ describe('Members API resource', function() {
         .then(function(res){
           test_token=res.body.authToken;
           accountId=res.body.account._id;
-          return seedMemberData(res);
+          console.log(accountId,'one');
+          let output = seedMemberData();
+          console.log(output);
+          return output;
         })
       })
     );
@@ -80,13 +84,13 @@ describe('Members API resource', function() {
   describe('GET endpoint', function() {
     it('should return all existing members', function() {
       let res;
-      console.log(accountId);
+     // console.log(accountId,test_token);
       return chai.request(app)
         .get(`/api/accounts/${accountId}/members`)
         .set('Authorization', `Bearer ${test_token}`)
         .then(function(_res) {
           res = _res;
-          res.should.have.status(200);
+          //res.should.have.status(200);
           res.body.members.should.have.length.of.at.least(1);
           return Member.count();
         })
@@ -99,7 +103,7 @@ describe('Members API resource', function() {
       let resMember;
       let accountId;
       return chai.request(app)
-        .get('/api/accounts/:accId/members')
+        .get(`/api/accounts/${accId}/members`)
         .set('Authorization', `Bearer ${test_token}`)
         .then(function(res) {
           res.should.have.status(200);
@@ -131,7 +135,7 @@ describe('Members API resource', function() {
       const newMember = generateTestMember();
 
       return chai.request(app)
-        .post('/api/accounts/:accId/members')
+        .post(`/api/accounts/${accId}/members`)
         .set('Authorization', `Bearer ${test_token}`)
         .send(newMember)
         .then(function(res) {
@@ -188,7 +192,7 @@ describe('Members API resource', function() {
         .findOne()
         .then(function(_member) {
           member = _member;
-          return chai.request(app).delete(`/api/members/${member.id}`).set('Authorization', `Bearer ${test_token}`);
+          return chai.request(app).delete(`/api/accounts/${accId}/members/${memid}`).set('Authorization', `Bearer ${test_token}`);
         })
         .then(function(res) {
           res.should.have.status(204);
