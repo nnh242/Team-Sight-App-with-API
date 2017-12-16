@@ -20,17 +20,10 @@ const memberRouter = require('./routers/memberRouter');
 const authRouter= require('./auth/authRouter');
 const taskRouter = require('./routers/taskRouter');
 
-//serving static assets in public folder
-app.use(express.static('public'));
+//serving static assets in client's build folder which has the components
+app.use(express.static('client/build'));
 
 // CORS
-const cors = require('cors');
-const {CLIENT_ORIGIN} = require('./config');
-app.use(
-    cors({
-        origin: CLIENT_ORIGIN
-    })
-);
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
