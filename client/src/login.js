@@ -21,6 +21,7 @@ const Login=props => {
                  name="username"
                  id="username"
              />
+             <br/><br/>
              <label htmlFor="password">Password</label>
              <Field
                  component="input"
@@ -28,15 +29,16 @@ const Login=props => {
                  name="password"
                  id="password"
              />
+             <br/><br/>
              <button type="submit">
                  Log in
              </button>
              </div>
+             <br/>
+            <p className="demo-info"> Demo Account</p>
+            <p className="demo-info">Username: demo</p>
+            <p className="demo-info">Password: demopassword</p>
          </form>
-         <br/>
-     <p className="demo"> Demo Account</p>
-     <p className="demo">Username: demo</p>
-     <p className="demo">Password: demopassword</p>
      </div>
  )
 }

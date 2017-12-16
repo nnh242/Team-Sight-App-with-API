@@ -4,16 +4,16 @@
     font-size: 21px;
 }
 
-.registration-form input {
+.registrationForm input {
     margin: 20px; 
     padding: 10px;
-    height: 30px;
+    height: 40px;
     width: 200px;
     font-size: 17px;
     border: 1px solid #263238;
     border-radius: 2px;
 }
-.registration-form button {
+.registrationForm button {
     font-size: 17px;
     height: 40px;
     background-color: #FF3D00;

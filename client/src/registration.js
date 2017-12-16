@@ -6,10 +6,11 @@ const RegistrationForm = props => {
     const {errorMessage,handleSubmit,pristine,reset,submitting} = props;
         return(
             <div className="registration">
-                <form className="registrationForm" onSubmit={handleSubmit(props.registerSubmit)}>
+                <h2>Register your team to get started</h2>
+                <form className="registrationForm" onSubmit={handleSubmit}>
                     <Field
                     label="teamname"
-                    placeholder="teamname"
+                    placeholder="team's name"
                     name="teamname"
                     component="input"/>
                     <Field
