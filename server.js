@@ -21,7 +21,9 @@ const authRouter= require('./auth/authRouter');
 const taskRouter = require('./routers/taskRouter');
 
 //serving static assets in client's build folder which has the components
-app.use(express.static('client/build'));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 // CORS
 app.use(function(req, res, next) {

@@ -1,0 +1,52 @@
+.home-page {
+    font-size: 20px;
+    text-align: center;
+    line-height: 1.5;
+  }
+       
+header {
+  padding: 15px 15px;
+}
+
+section {
+  min-height: 200px;
+  padding: 30px 15px;
+  background-color: #ddd;
+  color: #222222;
+ 
+}
+
+section:nth-child(even) {
+    background-color: #263238;
+    color: #ddd;
+}
+
+p {
+    margin: 0 auto;
+    max-width: 650px;
+}
+
+p + p {
+    margin-top: 15px;
+}
+footer {
+    padding: 1% 0;
+    background-color: #ddd;
+    color: #222222;
+    text-align: center;
+}
+.banner {
+    display:block;
+    margin: 0 auto;
+    padding-left: 30px;
+    max-height: 200px;
+    max-width:85%;
+}
+.login-link {
+    background-color: #263238;
+    color: #FF3D00;
+    float: right;
+    text-decoration: none;
+    margin-right: 50px;
+    margin-top: 20px;
+}

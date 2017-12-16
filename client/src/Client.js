@@ -1,1 +1,0 @@
-// example https://github.com/fullstackreact/food-lookup-demo/blob/master/client/src/Client.js
