@@ -1,16 +1,26 @@
-import {compose, createStore, applyMiddleware} from 'redux';
-import logger from 'redux-logger';
-import reducer from './reducers';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
-const middleware = [
-    logger,
-    thunk
-]
-const enhancers = compose(
-    applyMiddleware(...middleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+import {loadAuthToken} from './local-storage';
+import authReducer from './reducers/auth';
+import protectedDataReducer from './reducers/protected-data';
+import {setAuthToken, refreshAuthToken} from './actions/auth';
+
+const store = createStore(
+    combineReducers({
+        form: formReducer,
+        auth: authReducer,
+        protectedData: protectedDataReducer
+    }),
+    applyMiddleware(thunk)
 );
 
-const store = createStore(reducer,enhancers);
+// Hydrate the authToken from localStorage if it exist
+const authToken = loadAuthToken();
+if (authToken) {
+    const token = authToken;
+    store.dispatch(setAuthToken(token));
+    store.dispatch(refreshAuthToken());
+}
 
-export { store };
+export default store;
