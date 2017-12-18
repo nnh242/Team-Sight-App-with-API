@@ -1,0 +1,30 @@
+.registration h2 {
+    text-align: center;
+    margin: 10px;
+    font-size: 21px;
+}
+
+.registrationForm input {
+    margin: 20px; 
+    padding: 10px;
+    height: 40px;
+    width: 200px;
+    font-size: 17px;
+    border: 1px solid #263238;
+    border-radius: 2px;
+}
+.registrationForm button {
+    font-size: 17px;
+    height: 40px;
+    background-color: #FF3D00;
+    border: 1px solid #FF3D00;
+    border-radius: 2px;
+    margin-bottom: 50px;
+}
+.demo a {
+    text-decoration: none;
+    color: #FF3D00;
+}
+.demo a:visited {
+    color: #FF3D00;
+}
