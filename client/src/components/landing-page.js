@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
-import './landing-page';
+import './landing-page.css';
 import LoginForm from './login-form';
 import Banner from './banner.png';
 
