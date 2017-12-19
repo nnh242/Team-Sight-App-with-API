@@ -16,7 +16,7 @@ section {
  
 }
 
-section:nth-child(even) {
+section:nth-child(odd) {
     background-color: #263238;
     color: #ddd;
 }
@@ -42,11 +42,9 @@ footer {
     max-height: 200px;
     max-width:85%;
 }
-.login-link {
-    background-color: #263238;
-    color: #FF3D00;
-    float: right;
-    text-decoration: none;
-    margin-right: 50px;
-    margin-top: 20px;
+.login-form input {
+    height: 35px;
+    border: 1px black solid;
+    border-radius: 3px;
+    padding: 10px;
 }

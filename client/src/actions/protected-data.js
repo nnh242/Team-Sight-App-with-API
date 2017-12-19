@@ -1,5 +1,6 @@
 import {normalizeResponseErrors} from './utils';
 import REACT_APP_API_BASE_URL from '../config';
+
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
 export const fetchProtectedDataSuccess = data => ({
     type: FETCH_PROTECTED_DATA_SUCCESS,

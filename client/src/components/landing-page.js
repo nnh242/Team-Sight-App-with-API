@@ -6,14 +6,11 @@ import LoginForm from './login-form';
 import Banner from './banner.png';
 
 export function LandingPage(props) {
-    // If we are logged in redirect straight to the user's dashboard
     if (props.loggedIn) {
         return <Redirect to="/dashboard" />;
     }
-
     return (
         <div className="home-page">
-            <a href="/login" className="login-link">Login</a>
             <section>
             <img src={Banner} alt="Team Sight" className="banner"/>
                 <header>

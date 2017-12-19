@@ -11,10 +11,8 @@ import {refreshAuthToken} from '../actions/auth';
 export class App extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.loggedIn && !this.props.loggedIn) {
-            // When we are logged in, refresh the auth token periodically
             this.startPeriodicRefresh();
         } else if (!nextProps.loggedIn && this.props.loggedIn) {
-            // Stop refreshing when we log out
             this.stopPeriodicRefresh();
         }
     }
@@ -44,6 +42,7 @@ export class App extends React.Component {
                 <HeaderBar />
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/team" componenet={Team}/>
                 <Route exact path="/register" component={RegistrationPage} />
             </div>
         );

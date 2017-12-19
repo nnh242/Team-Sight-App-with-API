@@ -9,15 +9,16 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-    if (action.type === FETCH_PROTECTED_DATA_SUCCESS) {
+    switch (action.type){
+        case FETCH_PROTECTED_DATA_SUCCESS:
         return Object.assign({}, state, {
             data: action.data,
             error: null
         });
-    } else if (action.type === FETCH_PROTECTED_DATA_ERROR) {
+        case FETCH_PROTECTED_DATA_ERROR:
         return Object.assign({}, state, {
             error: action.error
         });
     }
-    return state;
+    return state;    
 }
