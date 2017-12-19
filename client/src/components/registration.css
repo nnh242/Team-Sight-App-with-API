@@ -1,9 +1,21 @@
-.registration h2 {
+*{
+    box-sizing: border-box;
+}
+body {
+    background-color: #263238;
+    color: white;
+}
+.registrationForm h2 {
     text-align: center;
     margin: 10px;
     font-size: 21px;
 }
-
+.registrationForm{
+    outline: 1px solid white;
+    max-width: 600px;
+     display: block;
+     margin: 0 auto;
+}
 .registrationForm input {
     margin: 20px; 
     padding: 10px;
@@ -24,6 +36,7 @@
 .demo a {
     text-decoration: none;
     color: #FF3D00;
+    text-align: center;
 }
 .demo a:visited {
     color: #FF3D00;

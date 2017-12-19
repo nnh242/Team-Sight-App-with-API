@@ -17,12 +17,12 @@ export class RegistrationForm extends React.Component {
     render() {
         return (
             <form
-                className="login-form"
+                className="registratioForm"
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
                 <label htmlFor="teamName">Team's name</label>
-                <Field component={Input} type="text" name="firstName" />
+                <Field component={Input} type="text" name="teamName" />
                 <label htmlFor="username">Username</label>
                 <Field
                     component={Input}

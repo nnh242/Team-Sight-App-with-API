@@ -13,7 +13,7 @@ export function LandingPage(props) {
 
     return (
         <div className="home-page">
-            <a href="/login" class="login-link">Login</a>
+            <a href="/login" className="login-link">Login</a>
             <section>
             <img src={Banner} alt="Team Sight" className="banner"/>
                 <header>
