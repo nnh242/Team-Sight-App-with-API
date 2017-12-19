@@ -5,7 +5,8 @@ const bcrypt = require('bcryptjs');
 const accountSchema = mongoose.Schema ({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
-    teamname: {type: String, required: true}
+    teamname: {type: String, required: true},
+    members: [{type: mongoose.Schema.Types.ObjectId, ref: 'Member'}]
 });
 
 accountSchema.methods.apiRepr = function() {

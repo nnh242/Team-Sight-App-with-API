@@ -1,0 +1,33 @@
+.add-button {
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.add-button a {
+    text-decoration: none;
+}
+
+.members > .add-button {
+    min-width: 200px;
+    background: #1565C0;
+}
+
+.members > .add-button:hover {
+    background: #0D47A1;
+}
+
+.members > .add-button a {
+    color: white;
+}
+
+.member > .add-button:hover {
+    background: #BDBDBD;
+}
+
+.member > .add-button a {
+    color: black;
+}
+
+.team .add-form {
+    align-self: flex-start;
+}
