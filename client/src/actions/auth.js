@@ -3,7 +3,7 @@ import {SubmissionError} from 'redux-form';
 
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
-import REACT_APP_API_BASE_URL from '../config';
+//import REACT_APP_API_BASE_URL from '../config';
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
     type: SET_AUTH_TOKEN,
@@ -37,21 +37,22 @@ export const authError = error => ({
 const storeAuthInfo = (authToken, dispatch) => {
     const decodedToken = jwtDecode(authToken);
     dispatch(setAuthToken(authToken));
-    dispatch(authSuccess(decodedToken.user));
+    console.log(decodedToken);
+    dispatch(authSuccess(decodedToken.account));
     saveAuthToken(authToken);
 };
 
 export const login = (username, password) => dispatch => {
     dispatch(authRequest());
     return (
-        fetch(`${REACT_APP_API_BASE_URL}/api/auth/login`, {
+        fetch('/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username,
-                password
+                username:username,
+                password:password
             })
         })
             // Reject any requests which don't return a 200 status, creating
@@ -80,7 +81,7 @@ export const login = (username, password) => dispatch => {
 export const refreshAuthToken = () => (dispatch, getState) => {
     dispatch(authRequest());
     const authToken = getState().auth.authToken;
-    return fetch(`${REACT_APP_API_BASE_URL}/api/auth/refresh`, {
+    return fetch('/api/auth/refresh', {
         method: 'POST',
         headers: {
             // Provide our existing token as credentials to get a new one

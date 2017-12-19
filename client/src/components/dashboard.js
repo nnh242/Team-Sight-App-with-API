@@ -3,22 +3,20 @@ import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import {fetchProtectedData} from '../actions/protected-data';
 import './dashboard.css';
-
+import Team from './team';
 export class Dashboard extends React.Component {
     componentDidMount() {
-        this.props.dispatch(fetchProtectedData());
+        this.props.dispatch(fetchProtectedData(this.props.accId));
     }
 
     render() {
         return (
             <div className="dashboard">
-                <div className="dashboard-username">
-                    Username: {this.props.username}
-                </div>
-                <div className="dashboard-name">Team's Name: {this.props.teamName}</div>
+                <div className="dashboard-name">{this.props.teamName}</div>
                 <div className="dashboard-protected-data">
                     Protected data: {this.props.protectedData}
                 </div>
+                <Team />
             </div>
         );
     }
@@ -27,9 +25,9 @@ export class Dashboard extends React.Component {
 const mapStateToProps = state => {
     const {currentUser} = state.auth;
     return {
-        username: state.auth.currentUser.username,
-        teamName: `${currentUser.teamName}`,
-        protectedData: state.protectedData.data
+        teamName: state.auth.currentUser.teamname,
+        protectedData: state.protectedData.data,
+        accId: state.auth.currentUser._id
     };
 };
 

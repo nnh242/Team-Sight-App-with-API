@@ -1,6 +1,16 @@
 import {normalizeResponseErrors} from './utils';
-import REACT_APP_API_BASE_URL from '../config';
+export const ADD_MEMBER = 'ADD_MEMBER';
+export const addMember = name => ({
+    type: ADD_MEMBER,
+    name
+});
 
+export const ADD_TASK = 'ADD_TASK';
+export const addTask = (text, memberIndex) => ({
+    type: ADD_TASK,
+    text,
+    memberIndex
+});
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
 export const fetchProtectedDataSuccess = data => ({
     type: FETCH_PROTECTED_DATA_SUCCESS,
@@ -15,10 +25,9 @@ export const fetchProtectedDataError = error => ({
 
 export const fetchProtectedData = (accId) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    return fetch(`${REACT_APP_API_BASE_URL}/api/accounts/:accId`, {
+    return fetch(`/api/accounts/${accId}`, {
         method: 'GET',
         headers: {
-            // Provide our auth token as credentials
             Authorization: `Bearer ${authToken}`
         }
     })
