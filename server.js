@@ -6,6 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set("port", process.env.PORT || 8080);
 //LOGGING
 const morgan = require('morgan');
 app.use(morgan('common'));

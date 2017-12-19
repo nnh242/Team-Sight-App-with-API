@@ -1,9 +1,9 @@
 import {SubmissionError} from 'redux-form';
-
+import REACT_APP_API_BASE_URL from '../config';
 import {normalizeResponseErrors} from './utils';
 
 export const registerUser = user => dispatch => {
-    return fetch('/api/accounts/register', {
+    return fetch(`${REACT_APP_API_BASE_URL}/api/accounts/register`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
