@@ -4,7 +4,9 @@
   "description": "api for teamsight app",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server.js",
+    "client": "node start-client.js",
     "test": "mocha"
   },
   "repository": {
@@ -28,17 +30,21 @@
     "express": "^4.16.2",
     "json-parser": "^1.1.5",
     "jsonwebtoken": "^8.1.0",
+    "jwt-decode": "^2.2.0",
     "mongoose": "^4.13.6",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-http": "^0.3.0",
     "passport-jwt": "^3.0.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "chai-shallow-deep-equal": "^1.4.6",
+    "concurrently": "^3.5.1",
+    "enzyme": "^3.2.0",
     "faker": "^4.1.0",
     "mocha": "^4.0.1",
     "nodemon": "^1.12.5"

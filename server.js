@@ -6,6 +6,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(jsonParser);
+app.set("port", process.env.PORT || 8080);
 //LOGGING
 const morgan = require('morgan');
 app.use(morgan('common'));
@@ -20,17 +22,12 @@ const memberRouter = require('./routers/memberRouter');
 const authRouter= require('./auth/authRouter');
 const taskRouter = require('./routers/taskRouter');
 
-//serving static assets in public folder
-app.use(express.static('public'));
+//serving static assets in client's build folder which has the components
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 // CORS
-const cors = require('cors');
-const {CLIENT_ORIGIN} = require('./config');
-app.use(
-    cors({
-        origin: CLIENT_ORIGIN
-    })
-);
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');

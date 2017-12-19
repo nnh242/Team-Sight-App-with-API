@@ -114,7 +114,7 @@ router.post('/register', jsonParser, (req, res) => {
 //GET api/accounts/:id
 router.get('/:accId',jwtAuth,(req,res) => {
     Account
-    .findById(req.params.id)
+    .findById(req.params.accId)
     .then(account => res.json(account.apiRepr()))
     .catch(catchError);
 });
