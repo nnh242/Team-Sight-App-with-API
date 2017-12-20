@@ -14,7 +14,8 @@ accountSchema.methods.apiRepr = function() {
         id: this._id,
         username: this.username,
         password: this.password,
-        teamname: this.teamname
+        teamname: this.teamname,
+        members: this.members
     }
   };
 //password hashing using bcryptjs

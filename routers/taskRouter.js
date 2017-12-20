@@ -35,7 +35,7 @@ router.post('/:accId/members/:memId/tasks',jwtAuth, jsonParser, (req,res) => {
         location: missingField
         });
     }
-    console.log(req.params.accId,req.params.memId);
+    console.log(req.params.accId,req.params.memId,tasks);
     Task
     .create({
         taskName: req.body.taskName, 

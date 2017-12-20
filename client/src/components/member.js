@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import Task from './task';
+import Time from './estimate';
 import AddForm from './add-form';
 
 import {addTask} from '../actions/protected-data';
@@ -15,7 +16,7 @@ export class Member extends React.Component {
 
     render() {
         const tasks = this.props.tasks.map((task, index) =>
-            <Task key={index} {...task} />
+            <div><Task key={index} {...task} /><Time time="12"/><Time time={task.actualTime}/></div>
         );
         return (
             <div className="member">

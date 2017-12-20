@@ -9,7 +9,8 @@ memberSchema.methods.apiRepr = function (member) {
     return {
         id: this._id,
         name: this.name,
-        accountId: this.accountId
+        accountId: this.accountId,
+        tasks: this.tasks
     }
 };
 
