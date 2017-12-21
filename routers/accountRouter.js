@@ -102,7 +102,10 @@ router.post('/register', jsonParser, (req, res) => {
         return Account.hashPassword(password);
       })
       .then(hash => {
-        return Account.create({ username, password: hash, teamname, members});
+        return Account
+        .create({ username, password: hash, teamname, members})
+        .populate(members)
+        .exec();
       })
       .then(account => {
           console.log('new', account);

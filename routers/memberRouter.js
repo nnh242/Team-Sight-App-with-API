@@ -38,6 +38,7 @@ router.post('/:accId/members',jwtAuth, jsonParser, (req,res) => {
     Member
     .create({name: req.body.name, accountId:req.params.accId, tasks:req.params.tasks})
     .populate(tasks)
+    .exec()
     .then(member => {
         console.log(`this is my new ${member}`);
         res.status(201).json(member.apiRepr())})
