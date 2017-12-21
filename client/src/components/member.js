@@ -16,11 +16,12 @@ export class Member extends React.Component {
 
     render() {
         const tasks = this.props.tasks.map((task, index) =>
-            <div><Task key={index} {...task} /><Time time="12"/><Time time={task.actualTime}/></div>
+            <div key={index} className="task-container"><Task className="task-name" {...task} /><Time className="est" key={task.estimateTime} time={task.estimateTime}/><Time className="actual" key={task.actualTime} time={task.actualTime}/></div>
         );
         return (
             <div className="member">
                 <h3>{this.props.name}</h3>
+                <div className="task-container"><h4 className="task-name">Task Name</h4><h4 className="est">Estimate</h4><h4 className="actual">Actual</h4></div>
                 {tasks}
                 <AddForm type="task" onAdd={text => this.addTask(text)} />
             </div>

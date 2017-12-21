@@ -7,16 +7,18 @@
     text-decoration: none;
 }
 
-.members > .add-button {
+.team > .add-button {
     min-width: 200px;
     background: #1565C0;
+    max-width: 300px;
+    margin: 20px;
 }
 
-.members > .add-button:hover {
+.team > .add-button:hover {
     background: #0D47A1;
 }
 
-.members > .add-button a {
+.team > .add-button a {
     color: white;
 }
 
@@ -26,8 +28,4 @@
 
 .member > .add-button a {
     color: black;
-}
-
-.team .add-form {
-    align-self: flex-start;
 }

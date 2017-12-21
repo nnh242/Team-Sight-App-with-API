@@ -11,20 +11,16 @@ const initialState = {
     members: [{
         name: 'Example member 1',
         tasks: [{
-            text: 'Example task 1'
+            text: 'Example task 1',
+            estimateTime: 12 + ' hr(s)',
+            actualTime: 16 + ' hr(s)'
         }, {
-            text: 'Example task 2'
-        }]
-    }, {
-        name: 'Example member 2',
-        tasks: [{
-            text: 'Example task 1'
-        }, {
-            text: 'Example task 2'
+            text: 'Example task 2',
+            estimateTime: 1 + ' hr(s)',
+            actualTime: 6 + ' hr(s)'
         }]
     }]
-
-};
+}
 
 export default function reducer(state = initialState, action) {
     switch (action.type){

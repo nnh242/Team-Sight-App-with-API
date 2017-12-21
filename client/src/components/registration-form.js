@@ -7,8 +7,8 @@ import {required, nonEmpty, matches, length, isTrimmed} from '../validators';
 
 export class RegistrationForm extends React.Component {
     onSubmit(values) {
-        const {username, password, teamName} = values;
-        const user = {username, password, teamName};
+        const {username, password, teamname} = values;
+        const user = {username, password, teamname};
         return this.props
             .dispatch(registerUser(user))
             .then(() => this.props.dispatch(login(username, password)));
@@ -20,8 +20,8 @@ export class RegistrationForm extends React.Component {
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                <label htmlFor="teamName">Team's name</label>
-                <Field component={Input} type="text" name="teamName" />
+                <label htmlFor="teamname">Team's name</label>
+                <Field component={Input} type="text" name="teamname" />
                 <label htmlFor="username">Username</label>
                 <Field
                     component={Input}

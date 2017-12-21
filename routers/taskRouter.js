@@ -3,6 +3,8 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const {Task} = require('../models/task');
+const {Account} = require('../models/account');
+const {Member} = require('../models/member');
 router.use(jsonParser);
 const passport = require ('passport');
 const  jwt = require('jsonwebtoken');
@@ -13,7 +15,7 @@ const catchError = (err,res) => {
 
 //this endpoint /api/accounts/:id/members/:id/tasks is protected
 router.get('/:accId/members/:memId/tasks',jwtAuth, (req, res) => {
-    console.log(req);
+    console.log(req.body,'this is request sent to get /tasks');
     console.log(res);
     Task
     .find({'accId': req.params.accId, 'memId':req.params.memId})
@@ -25,6 +27,7 @@ router.get('/:accId/members/:memId/tasks',jwtAuth, (req, res) => {
 }); 
 //POST to /api/accounts/:id/members/:id/tasks
 router.post('/:accId/members/:memId/tasks',jwtAuth, jsonParser, (req,res) => {
+    console.log(req, 'this is request at /api/accounts/:accId/members/:memId/tasks');
     const requiredFields = ['taskName','estimateTime','actualTime'];
     const missingField = requiredFields.find(field => !(field in req.body));
     if (missingField) {
@@ -35,19 +38,33 @@ router.post('/:accId/members/:memId/tasks',jwtAuth, jsonParser, (req,res) => {
         location: missingField
         });
     }
-    console.log(req.params.accId,req.params.memId,tasks);
-    Task
-    .create({
-        taskName: req.body.taskName, 
-        estimateTime: req.body.estimateTime, 
-        actualTime: req.body.actualTime,
-        accountId: req.params.accId, 
-        memberId: req.params.memId
-    })
+    console.log(req.params.accId,req.params.memId);
+    Account
+    .findById(req.params.accId)
+    .then(account => {
+        console.log(account, 'line 44');
+        return Task
+        .create({
+            taskName: req.body.taskName, 
+            estimateTime: req.body.estimateTime, 
+            actualTime: req.body.actualTime,
+            accountId: account.accId, 
+            memberId: account.memId
+        })
+        }
+    )
     .then(task => {
-        res.status(201)
-           .json(task.apiRepr())
+        Member.findById(req.params.memId)
+        .then(member=>{
+            member.tasks.push(task);
+            member.save()
+            .then( updatedMember => {
+                res.status(201)
+                .json(task.apiRepr())
+            })
+        })
     })
+    //push new task to Member  Member.task.push(task)
     .catch((err) => {
         console.log(err);
         return res.status(500)
