@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import Task from './task';
-import Time from './estimate';
-import AddForm from './add-form';
+import Time from './time';
+import TaskForm from './task-form';
 
 import {addTask} from '../actions/protected-data';
 
@@ -23,7 +23,7 @@ export class Member extends React.Component {
                 <h3>{this.props.name}</h3>
                 <div className="task-container"><h4 className="task-name">Task Name</h4><h4 className="est">Estimate</h4><h4 className="actual">Actual</h4></div>
                 {tasks}
-                <AddForm type="task" onAdd={text => this.addTask(text)} />
+                <TaskForm type="task" onAdd={text => this.addTask(text)} />
             </div>
         );
     }

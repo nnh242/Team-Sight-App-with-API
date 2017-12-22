@@ -1,8 +1,8 @@
 import React from 'react';
-import './estimate.css';
+import './time.css';
 export default function Time({time}) {
     return (
-        <div className="estimate">
+        <div className="time">
             {time}
         </div>
     );

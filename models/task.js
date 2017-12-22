@@ -1,8 +1,8 @@
 const mongoose = require ('mongoose');
 const taskSchema = mongoose.Schema ({
     taskName : {type:String},
-    estimateTime: {type: String},
-    actualTime: {type: String},
+    estimateTime: {type: Number},
+    actualTime: {type: Number},
     accountId: {type: mongoose.Schema.Types.ObjectId, ref: 'Account'},
     memberId: {type: mongoose.Schema.Types.ObjectId, ref: 'Member'}
 })

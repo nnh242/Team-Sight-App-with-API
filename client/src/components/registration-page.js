@@ -17,7 +17,7 @@ export function RegistrationPage(props) {
             <RegistrationForm />
             <br/>
             <p className="demo">Skip registration by going to <Link to="/">Login</Link> with demo account below:</p>
-            <p className="demo">Username: demo</p>
+            <p className="demo">Username: demoaccount</p>
             <p className="demo">Password: demopassword</p>
         </div>
     );

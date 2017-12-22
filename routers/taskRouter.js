@@ -64,7 +64,6 @@ router.post('/:accId/members/:memId/tasks',jwtAuth, jsonParser, (req,res) => {
             })
         })
     })
-    //push new task to Member  Member.task.push(task)
     .catch((err) => {
         console.log(err);
         return res.status(500)

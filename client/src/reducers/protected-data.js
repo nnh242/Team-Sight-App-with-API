@@ -1,8 +1,14 @@
 import {
     FETCH_PROTECTED_DATA_SUCCESS,
     FETCH_PROTECTED_DATA_ERROR,
-    ADD_TASK,
-    ADD_MEMBER
+    FETCH_MEMBER_SUCCESS,
+    FETCH_MEMBER_ERROR,
+    FETCH_TASK_SUCCESS,
+    FETCH_TASK_ERROR,
+    ADD_TASK_SUCCESS,
+    ADD_TASK_ERROR,
+    ADD_MEMBER_ERROR,
+    ADD_MEMBER_SUCCESS
 } from '../actions/protected-data';
 
 const initialState = {
@@ -12,12 +18,12 @@ const initialState = {
         name: 'Example member 1',
         tasks: [{
             text: 'Example task 1',
-            estimateTime: 12 + ' hr(s)',
-            actualTime: 16 + ' hr(s)'
+            estimateTime: 12,
+            actualTime: 16
         }, {
             text: 'Example task 2',
-            estimateTime: 1 + ' hr(s)',
-            actualTime: 6 + ' hr(s)'
+            estimateTime: 1,
+            actualTime: 6 
         }]
     }]
 }
@@ -33,27 +39,58 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             error: action.error
         });
-        case ADD_MEMBER:
+        case ADD_MEMBER_SUCCESS:
         return Object.assign({}, state, {
             members: [...state.members, {
+                accountId: action.accountId,
                 name: action.name,
                 tasks: []
             }]
         });
-        case ADD_TASK:
+        case ADD_MEMBER_ERROR:
+        return Object.assign({}, state, {
+            error: action.error
+        });
+        case FETCH_MEMBER_SUCCESS:
+        return Object.assign({}, state, {
+            members: action.members,
+            error: null
+        });
+        case FETCH_MEMBER_ERROR:
+        return Object.assign({}, state, {
+            error: action.error
+        });
+        case ADD_TASK_SUCCESS:
         let members = state.members.map((member, index) => {
             if (index !== action.memberIndex) {
                 return member;
             }
+            //TODO: add estimates and actual times as well.. how do i do that
             return Object.assign({}, member, {
                 tasks: [...member.tasks, {
-                    text: action.text
+                    text: action.text,
+                    estimateTime:action.estimateTime,
+                    actualTime: action.actualTime,
+                    memId: action.memId,
+                    accountId: action.accountId
                 }]
             });
         });
+        case ADD_TASK_ERROR:
+        return Object.assign({}, state, {
+            error: action.error
+        });
+        case FETCH_TASK_SUCCESS:
+        return Object.assign({}, state, {
+            task: action.task,
+            error: null
+        });
+        case FETCH_TASK_ERROR:
+        return Object.assign({}, state, {
+            error: action.error
+        });
         break;
-        default: 
-        return state; 
+        default: return state; 
     }
        
 }

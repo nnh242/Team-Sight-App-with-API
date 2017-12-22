@@ -2,7 +2,7 @@ import React from 'react';
 
 import './add-form.css';
 
-export default class AddForm extends React.Component {
+export default class TaskForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -38,12 +38,12 @@ export default class AddForm extends React.Component {
         }
 
         return (
-            <form className="task add-form" onSubmit={this.onSubmit}>
-                <input type="text" ref={input => this.textInput = input} />
+            <form className="task task-form" onSubmit={this.onSubmit}>
+                <input type="text" ref={input => this.textInput = input} placeholder="task's name"/>
+                <input type="text" ref={input => this.textInput = input} placeholder="estimate time"/>
+                <input type="text" ref={input => this.textInput = input} placeholder="actual time"/>
                 <button>+</button>
-                <button type="button" onClick={() => this.setEditing(false)}>
-                    X
-                </button>
+                <button type="button" onClick={() => this.setEditing(false)}>X</button>
             </form>
         );
     }
