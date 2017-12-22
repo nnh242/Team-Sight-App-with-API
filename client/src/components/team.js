@@ -29,10 +29,6 @@ export class Team extends React.Component {
     }
 }
 
-Team.defaultProps = {
-    name: 'My Team'
-};
-
 const mapStateToProps = state => ({
     members: state.protectedData.members,
     accId: state.auth.currentUser._id

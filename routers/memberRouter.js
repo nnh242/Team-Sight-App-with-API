@@ -85,6 +85,11 @@ router.put('/:accId/members/:id', jwtAuth, (req,res) => {
 router.delete('/:accId/members/:id', jwtAuth, (req,res) => {
     Member
     .findByIdAndRemove(req.params.id)
+    .populate({
+        path: 'tasks',
+        model: 'Task'
+    })
+    .exec()
     .then(member => res.status(204).end())
     .catch(catchError)
 });
