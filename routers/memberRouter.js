@@ -25,7 +25,7 @@ router.get('/:accId/members',jwtAuth, (req, res) => {
   }); 
 
 router.post('/:accId/members',jwtAuth, jsonParser, (req,res) => {
-    console.log(req.params);
+    console.log(req.body);
     const requiredFields = ['name','accountId'];
     const missingField = requiredFields.find(field => !(field in req.body));
     if (missingField) {
@@ -38,11 +38,17 @@ router.post('/:accId/members',jwtAuth, jsonParser, (req,res) => {
     }
     Member
     .create({name: req.body.name, accountId:req.params.accId, tasks:req.params.tasks})
-    //.populate(tasks)
-    //.exec()
     .then(member => {
-        console.log(`this is my new ${member}`);
-        res.status(201).json(member.apiRepr())})
+        Account.findById(req.params.accId)
+        .then(account=>{
+            account.members.push(member);
+            account.save()
+            .then( updatedAccount => {
+                res.status(201)
+                .json(member.apiRepr())
+            })
+        })
+    })
     .catch((err) => {
     return res.status(500).json({error: 'Something went wrong'});
     });

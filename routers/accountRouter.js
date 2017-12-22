@@ -119,7 +119,16 @@ router.post('/register', jsonParser, (req, res) => {
 router.get('/:accId',jwtAuth,(req,res) => {
     Account
     .findById(req.params.accId)
-    .then(account => res.json(account.apiRepr()))
+    .populate({
+        path:'members',
+        populate: {
+            path: 'tasks',
+            model: 'Task'
+        }
+    })
+    .exec()
+    .then(account => { console.log(account);
+        res.json(account.apiRepr())})
     .catch(catchError);
 });
 module.exports = router;

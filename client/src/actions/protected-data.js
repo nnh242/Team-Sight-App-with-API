@@ -3,17 +3,21 @@ import { authError } from './auth';
 
 //export const ADD_MEMBER = 'ADD_MEMBER';
 
-export const addMember = (accId,name) => (dispatch, getState) => {
+export const addMember = (accId, name) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`/api/accounts/${accId}/members`, {
         method: 'POST',
+        body: JSON.stringify({accountId:accId,name:name}),
         headers: {
-            Authorization: `Bearer ${authToken}`
+            Authorization: `Bearer ${authToken}`,
+            "Content-Type": "application/json" 
         }
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(({newMember}) => dispatch(addMemberSuccess(newMember)))
+        .then((newMember) => 
+        { console.log(newMember);
+            dispatch(addMemberSuccess(newMember))})
         .catch(err => {
             dispatch(addMemberError(err));
         });
@@ -61,7 +65,7 @@ export const fetchProtectedData = (accId) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(({data}) => dispatch(fetchProtectedDataSuccess(data)))
+        .then((data) => dispatch(fetchProtectedDataSuccess(data)))
         .catch(err => {
             dispatch(fetchProtectedDataError(err));
         });

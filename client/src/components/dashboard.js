@@ -14,9 +14,6 @@ export class Dashboard extends React.Component {
         return (
             <div className="dashboard">
                 <div className="dashboard-name">{this.props.teamname}</div>
-                <div className="dashboard-protected-data">
-                 {this.props.protectedData}
-                </div>
                 <img src={Logo} alt="TeamSight - See Your Team" className="logo"/>
                 <Team />
             </div>
@@ -27,7 +24,6 @@ export class Dashboard extends React.Component {
 const mapStateToProps = state => {
     return {
         teamname: state.auth.currentUser.teamname,
-        protectedData: state.protectedData.data,
         accId: state.auth.currentUser._id
     };
 };
