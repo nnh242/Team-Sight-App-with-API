@@ -62,12 +62,12 @@ export const fetchProtectedData = (accId) => (dispatch, getState) => {
         });
 };
 
-export const addTask = (accId, memId,taskName,estimateTime,actualTime)=> (dispatch,getState) => {
+export const addTask = (accId, memId, taskName, estimateTime, actualTime)=> (dispatch,getState) => {
     const authToken=getState().auth.authToken;
-    console.log(accId,memId,taskName,estimateTime,actualTime,'inside the addTask action');
-    return fetch(`/api/acounts/${accId}/members/${memId}/tasks`, {
+    console.log(accId,memId,taskName, estimateTime, actualTime ,'inside the addTask action');
+    return fetch(`/api/accounts/${accId}/members/${memId}/tasks`, {
         method: 'POST',
-        body: JSON.stringify({accountId:accId,memId:memId}),
+        body: JSON.stringify({accountId:accId,memId:memId,taskName:taskName,estimateTime:estimateTime,actualTime:actualTime}),
         headers: {
             Authorization: `Bearer ${authToken}`,
             "Content-Type": "application/json" 

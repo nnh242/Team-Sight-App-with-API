@@ -14,11 +14,20 @@ export default class TaskForm extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
-        const text = this.textInput.value.trim();
-        if (text && this.props.onAdd) {
-            this.props.onAdd(this.textInput.value);
+        
+        const taskName = this.taskNameInput.value.trim();
+        
+        const estimateTime = this.estimateTimeInput.value.trim();
+        
+        const actualTime = this.actualTimeInput.value.trim();
+        
+        if (taskName && estimateTime && actualTime && this.props.onAdd) {
+            this.props.onAdd(this.taskNameInput.value, this.estimateTimeInput.value,this.actualTimeInput.value);
         }
-        this.textInput.value = '';
+
+        this.taskNameInput.value = '';
+        this.estimateTimeInput.value = '';
+        this.actualTimeInput.value = '';
     }
 
     setEditing(editing) {
@@ -38,9 +47,9 @@ export default class TaskForm extends React.Component {
         }
         return (
             <form className="task task-form" onSubmit={this.onSubmit}>
-                <input type="text" ref={input => this.textInput = input} placeholder="task's name"/>
-                <input type="number" ref={input => this.textInput = input} placeholder="estimate time"/>
-                <input type="number" ref={input => this.textInput = input} placeholder="actual time"/>
+                <input type="text" ref={input => this.taskNameInput = input} placeholder="task's name"/>
+                <input type="number" ref={input => this.estimateTimeInput = input} placeholder="estimate time"/>
+                <input type="number" ref={input => this.actualTimeInput = input} placeholder="actual time"/>
                 <button>+</button>
                 <button type="button" onClick={() => this.setEditing(false)}>X</button>
             </form>
