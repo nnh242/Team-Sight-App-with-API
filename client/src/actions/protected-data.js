@@ -48,8 +48,6 @@ export const fetchProtectedDataError = error => ({
 
 export const fetchProtectedData = (accId) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    // const delayFetching = setTimeout((data) => dispatch(fetchProtectedDataSuccess(data)),5000);
-    //const data;
     return fetch(`/api/accounts/${accId}`, {
         method: 'GET',
         headers: {
@@ -58,7 +56,7 @@ export const fetchProtectedData = (accId) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then((data) => setTimeout(dispatch(fetchProtectedDataSuccess(data)),5000))
+        .then((data) => dispatch(fetchProtectedDataSuccess(data)))
         .catch(err => {
             dispatch(fetchProtectedDataError(err));
         });
@@ -78,7 +76,6 @@ export const addTask = (accId, memId, taskName, estimateTime, actualTime)=> (dis
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((newTask) => dispatch(addTaskSuccess(newTask)))
-        .then(dispatch(fetchProtectedData(accId)))
         .catch(err => {
             dispatch(addTaskError(err));
         });
