@@ -64,7 +64,7 @@ export const fetchProtectedData = (accId) => (dispatch, getState) => {
 
 export const addTask = (accId, memId, taskName, estimateTime, actualTime)=> (dispatch,getState) => {
     const authToken=getState().auth.authToken;
-    console.log(accId,memId,taskName, estimateTime, actualTime ,'inside the addTask action');
+    console.log(accId,memId,task.taskName, task.estimateTime, task.actualTime ,'inside the addTask action');
     return fetch(`/api/accounts/${accId}/members/${memId}/tasks`, {
         method: 'POST',
         body: JSON.stringify({accountId:accId,memId:memId,taskName:taskName,estimateTime:estimateTime,actualTime:actualTime}),
