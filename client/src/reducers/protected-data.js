@@ -30,7 +30,7 @@ export default function reducer(state = initialState, action) {
         console.log(action);
         return Object.assign({}, state, {
             data: action.data,
-            members:action.data.members,
+            members: action.data.members,
             error: null
         });
         case FETCH_PROTECTED_DATA_ERROR:
@@ -54,7 +54,6 @@ export default function reducer(state = initialState, action) {
             if (index !== action.memberIndex) {
                 return member;
             }
-            //TODO: add estimates and actual times as well.. how do i do that
             return Object.assign({}, member, {
                 tasks: [...member.tasks, {
                     taskName: action.newTask.taskName,

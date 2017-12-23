@@ -25,6 +25,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
+    "chart.js": "^2.7.1",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
@@ -37,6 +38,7 @@
     "passport-http": "^0.3.0",
     "passport-jwt": "^3.0.1",
     "passport-local": "^1.0.0",
+    "react-chartjs-2": "^2.6.4",
     "redux": "^3.7.2"
   },
   "devDependencies": {

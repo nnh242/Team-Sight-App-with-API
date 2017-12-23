@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Member from './member';
 import AddForm from './add-form';
 import {addMember} from '../actions/protected-data';
-
+import Chart from './chart';
 import './team.css';
 
 export class Team extends React.Component {
@@ -23,7 +23,7 @@ export class Team extends React.Component {
                 <div className="members">
                     {members}
                 </div>
-
+                <Chart />
             </div>
         );
     }
