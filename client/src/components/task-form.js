@@ -8,8 +8,8 @@ export default class TaskForm extends React.Component {
         this.state = {
             editing: false
         }
-
         this.onSubmit = this.onSubmit.bind(this);
+        this.setEditing = this.setEditing.bind(this);
     }
 
     onSubmit(event) {

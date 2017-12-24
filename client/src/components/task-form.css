@@ -29,3 +29,13 @@
 .member > .add-button a {
     color: black;
 }
+.task-form input{
+    border: 1px solid white;
+    border-radius: 2px;
+    margin: 5px;
+}
+.task-form button {
+    border: 1px solid #ff3d00;
+    border-radius: 2px;
+    margin: 5px;
+}
