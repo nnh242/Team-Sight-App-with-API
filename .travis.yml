@@ -2,10 +2,3 @@ language: node_js
 node_js: node
 services:
 - mongodb
-deploy:
-  provider: heroku
-  api_key:
-    secure: pGfTmgBsdoCOySvSJOOtgtUsNnTn7uhXohi51IynNE3PeWJdcyW3L6pddE8TRiFcKqIZS9p7HO+mdKOQ6E/Tb90cgJG8Z6vL+Z4ZxRfp2YfjFoHZS+koVZWJt8tXnCK1R8SQ+aHi6Fw88bQTOUyCtnzw3maRWs3f5SQJ4TTbXdPTD6/AxZF+kVq2d6FnaotFDoF1MjB/beyRcN/XWGMk/Pd8oir1WU53PLwjUyFff2yWzdW3dIWBUG2ASj84qNi+CGIKXUQKrTYCNDRVca06zVnCQrQCu/MIAlnnJxXwruVnencY9OFlUiMN8v5CKKqs/ck/G2Ruom8XvPzPOCRWAWGChNFofxMvEXlzb7ysGURcvxayz/zF/+Vy7InpJVrHbNWfOeo94DUz6j7ZaFlN0gfwjbCwjUM7o0kOrKpASP/lZgHCpb1zeYW8NosIQZJudoIHL6GCtAkD3pqFu/MXGZtWMOndlaJwnLwezGGAKAuXHBKUZt0wVcuUVxfaoV38BzJau+bSOcAknaccDZE6M+48DYMWM85aqWGyLutXrMHib3V6I0M7iL4h/cLZXmRtw9MSHEfyxbQ1OcAW6Nir/3IsKuODEbIBu8pQOaqIjVQbVred0Gi/s8m5oFYXNA5H542l2v6fDUYxUv5oO+eOtgicFkUsOg/QMbgW7SpXepk=
-  app: teamsight
-  on:
-    repo: nnh242/Team-Sight-with-API
