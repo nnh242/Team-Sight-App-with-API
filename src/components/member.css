@@ -1,0 +1,30 @@
+.member {
+    background: #E0E0E0;
+    margin: 10px 10px 0 0px;
+    padding: 8px;
+    min-width: 300px;
+    border-radius: 4px;
+    max-width: 320px;
+    flex-grow: 1;
+}
+
+.member:first-child {
+    margin-left: 0;
+}
+
+.member:last-child {
+    margin-right: 0;
+}
+.task-container{
+    display:flex;
+    justify-content: space-between;
+}
+.task-name{
+  width: 50%;
+}
+.est{
+ width: 25%;
+}
+.actual{
+ width: 25%;
+}

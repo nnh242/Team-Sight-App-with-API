@@ -1,0 +1,23 @@
+.header-bar {
+    margin: 20px;
+}
+.header-bar button{
+    border: 1px solid #FF3D00;
+    border-radius: 3px;
+    float: right;
+}
+.dashboard-name {
+    margin-left: 20px;
+}
+.team h2 {
+    text-align: center;
+}
+.members {
+    margin: 20px;
+}
+.logo {
+    display: block;
+    margin: 10px auto;
+    height: 80px;
+    width: 80px;
+}
