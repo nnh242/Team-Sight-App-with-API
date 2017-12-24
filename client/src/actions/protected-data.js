@@ -58,7 +58,7 @@ export const fetchProtectedData = (accId) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then((data) => setTimeout(dispatch(fetchProtectedDataSuccess(data)),5000))
+        .then((data) => dispatch(fetchProtectedDataSuccess(data)))
         .catch(err => {
             dispatch(fetchProtectedDataError(err));
         });

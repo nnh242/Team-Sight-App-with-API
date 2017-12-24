@@ -1,7 +1,7 @@
 {
-  "name": "teamsight-api",
+  "name": "teamsight",
   "version": "1.0.0",
-  "description": "api for teamsight app",
+  "description": "teamsight app",
   "main": "server.js",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
