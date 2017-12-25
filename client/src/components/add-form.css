@@ -2,7 +2,11 @@
     padding: 8px;
     border-radius: 4px;
 }
-
+.add-form > input {
+    border: 1px solid #222222;
+    border-radius: 2px;
+    margin-right: 2px;
+}
 .add-button a {
     text-decoration: none;
 }

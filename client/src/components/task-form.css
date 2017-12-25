@@ -1,41 +1,21 @@
-.add-button {
-    padding: 8px;
-    border-radius: 4px;
+
+.task-form input {
+    border: 1px solid #222222;
+    border-radius: 3px;
+    height: 28px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding: 2px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.add-button a {
-    text-decoration: none;
-}
-
-.team > .add-button {
-    min-width: 200px;
-    background: #1565C0;
-    max-width: 300px;
-    margin: 20px;
-}
-
-.team > .add-button:hover {
-    background: #0D47A1;
-}
-
-.team > .add-button a {
-    color: white;
-}
-
-.member > .add-button:hover {
-    background: #BDBDBD;
-}
-
-.member > .add-button a {
-    color: black;
-}
-.task-form input{
-    border: 1px solid white;
-    border-radius: 2px;
-    margin: 5px;
-}
 .task-form button {
-    border: 1px solid #ff3d00;
+    font-size: 17px;
+    border: 1px solid #FF3D00;
     border-radius: 2px;
-    margin: 5px;
+    display: block;
+    text-align: center;
+    margin: 6px auto;
 }

@@ -5,7 +5,7 @@ import Task from './task';
 import Time from './time';
 import TaskForm from './task-form';
 
-import {addTask} from '../actions/protected-data';
+import {addTask, fetchProtectedData} from '../actions/protected-data';
 
 import './member.css';
 
@@ -13,9 +13,7 @@ export class Member extends React.Component {
     addTaskHandler(taskName,estimateTime,actualTime) {
         this.props.dispatch(addTask(this.props.accId,this.props._id,taskName, estimateTime, actualTime));
     }
-
     render() {
-        console.log(this.props,'this is after adding a task');
         const tasks = this.props.tasks.map((task, index) =>
             <div key={index} className="task-container"><Task className="task-name" {...task} /><Time className="est" time={task.estimateTime}/><Time className="actual"  time={task.actualTime}/></div>
         );

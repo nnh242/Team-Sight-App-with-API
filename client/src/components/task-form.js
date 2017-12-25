@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './add-form.css';
+import './task-form.css';
 
 export default class TaskForm extends React.Component {
     constructor(props) {
@@ -46,7 +46,7 @@ export default class TaskForm extends React.Component {
             );
         }
         return (
-            <form className="task task-form" >
+            <form className="task-form" >
                 <input type="text" ref={taskName => this.taskNameInput = taskName} placeholder="task's name"/>
                 <input type="number" ref={estimateTime => this.estimateTimeInput = estimateTime} placeholder="estimate time"/>
                 <input type="number" ref={actualTime => this.actualTimeInput = actualTime} placeholder="actual time"/>

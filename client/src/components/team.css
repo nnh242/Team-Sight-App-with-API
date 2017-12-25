@@ -9,9 +9,10 @@
     padding: 10px;
 }
 .team > form > button {
-    margin: 5px;
+    margin: 2px;
     border: 1px solid #FF3D00;
-    border-radius: 30px;
+    border-radius: 3px;
+    font-size: 15px;
 }
 .team {
     max-width: 1000px;

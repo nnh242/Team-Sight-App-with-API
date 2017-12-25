@@ -41,12 +41,7 @@ export default function reducer(state = initialState, action) {
             members: [...state.members, {
                 accountId: action.newMember.accountId,
                 name: action.newMember.name,
-                tasks: [...member.tasks,{
-                    taskName:[],
-                    estimateTime:[],
-                    actualTime:[],
-                    memId:memId
-                }]
+                tasks: []
             }]
         });
         case ADD_MEMBER_ERROR:
