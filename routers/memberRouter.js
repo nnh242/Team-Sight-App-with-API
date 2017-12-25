@@ -14,7 +14,6 @@ const catchError = (err,res) => {
 
 //this endpoint api/accounts/:accountId/members is protected
 router.get('/:accId/members',jwtAuth, (req, res) => {
-    console.log(req,'POST at /:accId/members');
     Member
     .find({'accountId': req.params.accId})
     .then(members => {
@@ -25,7 +24,6 @@ router.get('/:accId/members',jwtAuth, (req, res) => {
   }); 
 
 router.post('/:accId/members',jwtAuth, jsonParser, (req,res) => {
-    console.log(req.body);
     const requiredFields = ['name','accountId'];
     const missingField = requiredFields.find(field => !(field in req.body));
     if (missingField) {

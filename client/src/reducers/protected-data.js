@@ -27,7 +27,6 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type){
         case FETCH_PROTECTED_DATA_SUCCESS:
-        console.log(action);
         return Object.assign({}, state, {
             data: action.data,
             members: action.data.members,
@@ -42,7 +41,12 @@ export default function reducer(state = initialState, action) {
             members: [...state.members, {
                 accountId: action.newMember.accountId,
                 name: action.newMember.name,
-                tasks: []
+                tasks: [...member.tasks,{
+                    taskName:[],
+                    estimateTime:[],
+                    actualTime:[],
+                    memId:memId
+                }]
             }]
         });
         case ADD_MEMBER_ERROR:

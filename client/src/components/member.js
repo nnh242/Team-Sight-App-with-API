@@ -11,7 +11,6 @@ import './member.css';
 
 export class Member extends React.Component {
     addTaskHandler(taskName,estimateTime,actualTime) {
-        console.log(taskName,estimateTime,actualTime,this.props.accId,this.props._id);
         this.props.dispatch(addTask(this.props.accId,this.props._id,taskName, estimateTime, actualTime));
     }
 

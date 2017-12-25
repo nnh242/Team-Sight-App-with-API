@@ -68,7 +68,6 @@ function validateUserFields(account) {
 //CREATE a new account
 router.post('/register', jsonParser, (req, res) => {
     const requiredFields = ['username', 'password', 'teamname'];
-    console.log(req.body,'this is request at /api/accounts/register');
     const missingField = requiredFields.find(field => !(field in req.body));
     if (missingField) {
       return res.status(422).json({
@@ -107,11 +106,9 @@ router.post('/register', jsonParser, (req, res) => {
         .create({ username, password: hash, teamname, members})
       })
       .then(account => {
-          console.log('new', account);
         return res.status(201).json(account.apiRepr());
       })
       .catch(err => {
-          console.log(err,'error at create account');
           return res.status(err.code).json(err);
       });
   });
@@ -127,8 +124,8 @@ router.get('/:accId',jwtAuth,(req,res) => {
         }
     })
     .exec()
-    .then(account => { console.log(account);
-        res.json(account.apiRepr())})
+    .then(account => 
+        res.json(account.apiRepr()))
     .catch(catchError);
 });
 module.exports = router;

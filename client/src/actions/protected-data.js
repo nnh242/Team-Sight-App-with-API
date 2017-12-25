@@ -15,9 +15,7 @@ export const addMember = (accId, name) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then((newMember) => 
-        { console.log(newMember);
-            dispatch(addMemberSuccess(newMember))})
+        .then((newMember) => dispatch(addMemberSuccess(newMember)))
         .catch(err => {
             dispatch(addMemberError(err));
         });
@@ -66,7 +64,6 @@ export const fetchProtectedData = (accId) => (dispatch, getState) => {
 
 export const addTask = (accId, memId, taskName, estimateTime, actualTime)=> (dispatch,getState) => {
     const authToken=getState().auth.authToken;
-    console.log(accId,memId, taskName, estimateTime, actualTime,'inside the addTask action');
     return fetch(`/api/accounts/${accId}/members/${memId}/tasks`, {
         method: 'POST',
         body: JSON.stringify({accountId:accId,memId:memId,taskName:taskName,estimateTime:estimateTime,actualTime:actualTime}),

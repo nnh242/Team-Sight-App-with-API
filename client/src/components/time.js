@@ -1,14 +1,11 @@
 import React from 'react';
 import './time.css';
-export default function Time({time}) {
+import {connect} from 'react-redux';
+export function Time({time}) {
     return (
         <div className="time">
-
             {time} hr(s)
         </div>
     );
 };
-
-Time.defaultProps = {
-    time: ''
-};
+export default connect()(Time);
