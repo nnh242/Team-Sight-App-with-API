@@ -23,7 +23,7 @@ export default class TaskForm extends React.Component {
         
         if (taskName && estimateTime && actualTime && this.props.onAdd) {
             this.props.onAdd(this.taskNameInput.value, this.estimateTimeInput.value,this.actualTimeInput.value);
-            window.location.reload();
+            setTimeout(window.location.reload(),500);
         }
 
         this.taskNameInput.value = '';
