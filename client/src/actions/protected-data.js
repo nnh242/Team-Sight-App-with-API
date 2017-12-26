@@ -1,7 +1,4 @@
 import {normalizeResponseErrors} from './utils';
-import { authError } from './auth';
-
-//export const ADD_MEMBER = 'ADD_MEMBER';
 
 export const addMember = (accId, name) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
@@ -73,8 +70,10 @@ export const addTask = (accId, memId, taskName, estimateTime, actualTime)=> (dis
         }
     })
         .then(res => normalizeResponseErrors(res))
-        .then(res => res.json())
-        .then((newTask) => dispatch(addTaskSuccess(newTask)))
+        .then(res => {console.log(res);res.json()})
+        .then(newTask => {
+            console.log(newTask, 'this is inside addTask new task'); 
+            dispatch(addTaskSuccess(newTask))})
         .then(dispatch(fetchProtectedData(accId)))
         .catch(err => {
             dispatch(addTaskError(err));

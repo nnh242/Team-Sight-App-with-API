@@ -5,7 +5,7 @@ import Task from './task';
 import Time from './time';
 import TaskForm from './task-form';
 
-import {addTask, fetchProtectedData} from '../actions/protected-data';
+import {addTask} from '../actions/protected-data';
 
 import './member.css';
 
