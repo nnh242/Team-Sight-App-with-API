@@ -29,7 +29,6 @@ export function LandingPage(props) {
                 <header>
                     <h3>Keep track of your progress</h3>
                 </header>
-                <p>[<em>placeholder for screenshot of metrics</em>]</p>
                 <p>Compare the estimated time and actual time of completion for each task for each team member. This simple metric is powerful to see the team member's patterns and plan for optimization.</p>
             </section>
             <section>
