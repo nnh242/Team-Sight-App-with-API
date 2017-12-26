@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import {fetchProtectedData} from '../actions/protected-data';
 import './dashboard.css';
-import Logo from './logo.png';
+
 import Team from './team';
 export class Dashboard extends React.Component {
     componentDidMount() {
@@ -14,7 +14,6 @@ export class Dashboard extends React.Component {
         return (
             <div className="dashboard">
                 <div className="dashboard-name">{this.props.teamname}</div>
-                <img src={Logo} alt="TeamSight - See Your Team" className="logo"/>
                 <Team />
             </div>
         );
