@@ -54,3 +54,9 @@ footer {
     border: 1px solid #FF3D00;
     border-radius: 5px;
 }
+.team-img {
+    max-width: 320px;
+    max-height: 660px;
+    border: 1px solid #FAFAFA;
+    border-radius: 3px;
+}
