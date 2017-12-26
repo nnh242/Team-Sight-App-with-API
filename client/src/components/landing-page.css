@@ -48,3 +48,9 @@ footer {
     border-radius: 3px;
     padding: 10px;
 }
+.login-form button {
+    margin: 6px;
+    padding: 5px;
+    border: 1px solid #FF3D00;
+    border-radius: 5px;
+}

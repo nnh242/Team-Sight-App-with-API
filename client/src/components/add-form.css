@@ -5,7 +5,7 @@
 .add-form > input {
     border: 1px solid #222222;
     border-radius: 2px;
-    margin-right: 2px;
+    padding: 3px;
 }
 .add-button a {
     text-decoration: none;
@@ -13,17 +13,18 @@
 
 .team > .add-button {
     min-width: 200px;
-    background: #1565C0;
+    background: #FAFAFA;
     max-width: 300px;
     margin: 20px;
+    
 }
 
 .team > .add-button:hover {
-    background: #0D47A1;
+    background-color: #FF3D00;
 }
 
 .team > .add-button a {
-    color: white;
+    color: #222222;
 }
 
 .member > .add-button:hover {
