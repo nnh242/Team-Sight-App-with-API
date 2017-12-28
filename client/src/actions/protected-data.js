@@ -70,19 +70,24 @@ export const addTask = (accId, memId, taskName, estimateTime, actualTime)=> (dis
         }
     })
         .then(res => normalizeResponseErrors(res))
-        .then(res => {console.log(res);res.json()})
+        .then(res => {console.log(res); return res.json()})
         .then(newTask => {
             console.log(newTask, 'this is inside addTask new task'); 
-            dispatch(addTaskSuccess(newTask))})
-        .then(dispatch(fetchProtectedData(accId)))
+            dispatch(addTaskSuccess(newTask,memId))})
+        .then(
+            setTimeout( ()=>{
+                dispatch(fetchProtectedData(accId))
+            }
+            ,1000))
         .catch(err => {
             dispatch(addTaskError(err));
         });
 };
 export const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS';
-export const addTaskSuccess = newTask => ({
+export const addTaskSuccess = (newTask,memId) => ({
     type: ADD_TASK_SUCCESS,
-    newTask
+    newTask,
+    memId
 });
 
 export const ADD_TASK_ERROR = 'ADD_TASK_ERROR';

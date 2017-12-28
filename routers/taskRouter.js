@@ -53,7 +53,7 @@ router.post('/:accId/members/:memId/tasks',jwtAuth, jsonParser, (req,res) => {
         .then(member=>{
             member.tasks.push(task);
             member.save()
-            .then( updatedMember => {
+        .then(updatedMember => {
                 res.status(201)
                 .json(task.apiRepr())
             })

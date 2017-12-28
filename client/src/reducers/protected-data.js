@@ -49,28 +49,26 @@ export default function reducer(state = initialState, action) {
             error: action.error
         });
         case ADD_TASK_SUCCESS:
-        let member = state.members.map((member, index) => {
-            if (index !== action.memberIndex) {
+        let members = state.members.map((member, index) => {
+            if (member.id !== action.memId) {
                 return member;
             }
             let newState= Object.assign({}, member, {
                 tasks: [...member.tasks, {
                     taskName: action.newTask.taskName,
                     estimateTime:action.newTask.estimateTime,
-                    actualTime: action.newTask.actualTime,
-                    memId: action.newTask.memId,
-                    accountId: action.newTask.accountId
+                    actualTime: action.newTask.actualTime
                 }]
             });
-            console.log(newState,'after adding a task');
             return newState;
         });
-        break;
+        return Object.assign({},state,{
+            members
+        })
         case ADD_TASK_ERROR:
         return Object.assign({}, state, {
             error: action.error
         });
-        break;
         default: return state; 
     }
        
