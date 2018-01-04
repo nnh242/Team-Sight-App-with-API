@@ -9,7 +9,7 @@ function contentClass(isShow) {
     }
     return "content invisible";
   }
-  
+
 export class Chart extends React.Component {
     constructor(props) {
       super(props);
@@ -19,7 +19,8 @@ export class Chart extends React.Component {
               labels: [this.props.taskName],
               datasets: [
                   {
-                      label: estimateTime,
+                      label: "estimated time",
+                      data: [1,2,3]
                   }
               ]
           }
@@ -32,12 +33,12 @@ export class Chart extends React.Component {
       });
     }
     render() {
-    
+
       return (
         <div>
           <button type="button" className='control' onClick={this.handleClick}><img src={Logo} alt="TeamSight - See Your Team" className="logo"/></button>
           <div className={contentClass(this.state.isShow)}>
-          <Line data= {chartData}/>
+          <Line data= {this.state.chartData}/>
           </div>
         </div>
       );
@@ -50,5 +51,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Chart);
-
-

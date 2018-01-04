@@ -42,11 +42,7 @@ export const deleteMember = (accId,memId) => (dispatch, getState) =>  {
   })
       .then(res => normalizeResponseErrors(res))
       .then((res) => {console.log(res)})
-      .then(
-          setTimeout( ()=>{
-              dispatch(fetchProtectedData(accId))
-          }
-          ,1000))
+      .then(dispatch(fetchProtectedData(accId)))
       .catch((err) => {
           console.log(err);
       });

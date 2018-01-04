@@ -14,13 +14,12 @@ export class Member extends React.Component {
         this.props.dispatch(addTask(this.props.accId,this.props._id,taskName, estimateTime, actualTime));
     }
     deleteMemberHandler(accId,memId){
-      this.props.dispatch(deleteMember(accId,memId))
+      this.props.dispatch(deleteMember(this.props.accId,this.props._id))
     }
     render() {
         const tasks = this.props.tasks.map((task, index) =>
             <div key={index} className="task-container"><Task className="task-name" {...task} /><Time className="est" time={task.estimateTime}/><Time className="actual"  time={task.actualTime}/></div>
         );
-        console.log(this.props);
         return (
             <div className="member">
                 <h3>{this.props.name}</h3><button type="button" onClick={ (accId,memId) => this.deleteMemberHandler(accId,this.props._id)}>Delete</button>
