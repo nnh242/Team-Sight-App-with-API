@@ -31,9 +31,10 @@ export const addMemberError = error => ({
 
 export const deleteMember = (accId,memId) => (dispatch, getState) =>  {
   const authToken = getState().auth.authToken;
+  console.log(accId,memId);
   return fetch(`/api/accounts/${accId}/members/${memId}`, {
       method: 'DELETE',
-      body: JSON.stringify({accountId:accId,id:memId}),
+      body: {accountId:accId,memId:memId},
       headers: {
           Authorization: `Bearer ${authToken}`,
           "Content-Type": "application/json"
@@ -41,6 +42,11 @@ export const deleteMember = (accId,memId) => (dispatch, getState) =>  {
   })
       .then(res => normalizeResponseErrors(res))
       .then((res) => {console.log(res)})
+      .then(
+          setTimeout( ()=>{
+              dispatch(fetchProtectedData(accId))
+          }
+          ,1000))
       .catch((err) => {
           console.log(err);
       });
