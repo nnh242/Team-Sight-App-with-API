@@ -7,7 +7,7 @@ export const addMember = (accId, name) => (dispatch, getState) => {
         body: JSON.stringify({accountId:accId,name:name}),
         headers: {
             Authorization: `Bearer ${authToken}`,
-            "Content-Type": "application/json" 
+            "Content-Type": "application/json"
         }
     })
         .then(res => normalizeResponseErrors(res))
@@ -28,6 +28,24 @@ export const addMemberError = error => ({
     type: ADD_MEMBER_ERROR,
     error
 });
+
+export const deleteMember = (accId,memId) => (dispatch, getState) =>  {
+  const authToken = getState().auth.authToken;
+  return fetch(`/api/accounts/${accId}/members/${memId}`, {
+      method: 'DELETE',
+      body: JSON.stringify({accountId:accId,id:memId}),
+      headers: {
+          Authorization: `Bearer ${authToken}`,
+          "Content-Type": "application/json"
+      }
+  })
+      .then(res => normalizeResponseErrors(res))
+      .then((res) => {console.log(res)})
+      .catch((err) => {
+          console.log(err);
+      });
+}
+export const DELETE_MEMBER = 'DELETE_MEMBER';
 //this fetch protected data when succeed should get/display account by id and its members and tasks
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
 export const fetchProtectedDataSuccess = data => ({
@@ -66,13 +84,13 @@ export const addTask = (accId, memId, taskName, estimateTime, actualTime)=> (dis
         body: JSON.stringify({accountId:accId,memId:memId,taskName:taskName,estimateTime:estimateTime,actualTime:actualTime}),
         headers: {
             Authorization: `Bearer ${authToken}`,
-            "Content-Type": "application/json" 
+            "Content-Type": "application/json"
         }
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => {console.log(res); return res.json()})
         .then(newTask => {
-            console.log(newTask, 'this is inside addTask new task'); 
+            console.log(newTask, 'this is inside addTask new task');
             dispatch(addTaskSuccess(newTask,memId))})
         .then(
             setTimeout( ()=>{

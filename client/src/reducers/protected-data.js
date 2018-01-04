@@ -4,7 +4,8 @@ import {
     ADD_TASK_SUCCESS,
     ADD_TASK_ERROR,
     ADD_MEMBER_ERROR,
-    ADD_MEMBER_SUCCESS
+    ADD_MEMBER_SUCCESS,
+    DELETE_MEMBER
 } from '../actions/protected-data';
 
 const initialState = {
@@ -19,7 +20,7 @@ const initialState = {
         }, {
             text: 'Example task 2',
             estimateTime: 1,
-            actualTime: 6 
+            actualTime: 6
         }]
     }]
 }
@@ -48,6 +49,10 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             error: action.error
         });
+        case DELETE_MEMBER:
+        return Object.assign({},state,{
+            members:[...state.members]
+        })
         case ADD_TASK_SUCCESS:
         let members = state.members.map((member, index) => {
             if (member.id !== action.memId) {
@@ -69,7 +74,7 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             error: action.error
         });
-        default: return state; 
+        default: return state;
     }
-       
+
 }

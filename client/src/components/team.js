@@ -8,9 +8,8 @@ import './team.css';
 
 export class Team extends React.Component {
     addMemberHandler(name) {
-        this.props.dispatch(addMember(this.props.accId,name));
+        this.props.dispatch(addMember(this.props.accId, name));
     }
-
     render() {
         const members = this.props.members.map((member, index) =>
             <Member key={index} index={index} {...member} />
@@ -28,7 +27,8 @@ export class Team extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => (
+  {
     members: state.protectedData.members,
     accId: state.auth.currentUser._id
 });
