@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Member from './member';
 import AddForm from './add-form';
 import {addMember} from '../actions/protected-data';
-//import Chart from './chart';
+import Chart from './chart';
 import './team.css';
 
 export class Team extends React.Component {
@@ -18,6 +18,7 @@ export class Team extends React.Component {
         return (
             <div className="team">
                 <h2>{this.props.name}</h2>
+                <Chart />
                 <AddForm className="addForm" type="member" onAdd={name => this.addMemberHandler(name)} />
                 <div className="members">
                     {members}
