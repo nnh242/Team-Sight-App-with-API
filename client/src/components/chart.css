@@ -1,0 +1,17 @@
+.control{
+    display: block;
+    margin: auto;
+    background-color: #263238;
+    border: 1px solid antiquewhite;
+    border-radius: 50%;
+}
+.content {
+    display:block;
+    margin: 10px auto;
+}
+.control:hover {
+    cursor: pointer;
+}
+.invisible {
+    display: none;
+}
