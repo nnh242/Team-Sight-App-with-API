@@ -22,7 +22,7 @@ export class Member extends React.Component {
         );
         return (
             <div className="member">
-                <h3>{this.props.name}</h3><button type="button" onClick={ (accId,memId) => this.deleteMemberHandler(accId,this.props._id)}>Delete</button>
+                <div className="name-container"><h3>{this.props.name}</h3><button className="delete-member-button" type="button" onClick={ (accId,memId) => this.deleteMemberHandler(accId,this.props._id)}>Delete</button></div>
                 <div className="task-container"><h4 className="task-name">Task Name</h4><h4 className="est">Estimate</h4><h4 className="actual">Actual</h4></div>
                 {tasks}
                 <TaskForm type="task" onAdd={(taskName,estimateTime,actualTime) => this.addTaskHandler(taskName,estimateTime,actualTime)} />

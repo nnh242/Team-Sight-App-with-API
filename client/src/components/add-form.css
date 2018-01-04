@@ -15,6 +15,8 @@
 }
 
 .team > .add-button {
+    border: 1px solid;
+    border-radius: 3px;
     min-width: 200px;
     background: #FAFAFA;
     max-width: 320px;
