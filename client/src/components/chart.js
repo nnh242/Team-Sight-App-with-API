@@ -9,6 +9,15 @@ function contentClass(isShow) {
     }
     return "content invisible";
   }
+const estimateArray= [];
+function calculateEstimateArray(){
+  for(let i=0; i<this.props.members.length; i++){
+    for(let j=0; j<this.props.members[i].tasks.length; j++){
+      estimateArray.push(this.props.tasks[j].estimateTime);
+    }
+  }
+  return estimateArray;
+}
 
 export class Chart extends React.Component {
     constructor(props) {
@@ -16,13 +25,27 @@ export class Chart extends React.Component {
       this.state = {
           isShow: false,
           chartData: {
-              labels: [this.props.taskName],
+              labels: ["task 1", "task 2", "task 3"],
               datasets: [
                   {
-                      label: "estimated time",
-                      data: [1,2,3]
+                      label: "estimate time",
+                      data: `${estimateArray}`,
+                      borderColor: "white"
+                  },
+                  {
+                    label: "actual time",
+                    data: [2,5,6],
+                    borderColor: "#FF3D00"
                   }
               ]
+          },
+          options: {
+            legend: {
+              display: true,
+              labels: {
+                fontColor: "white"
+              }
+            }
           }
     };
       this.handleClick = this.handleClick.bind(this);
@@ -36,9 +59,10 @@ export class Chart extends React.Component {
 
       return (
         <div>
-          <button type="button" className='control' onClick={this.handleClick}><img src={Logo} alt="TeamSight - See Your Team" className="logo"/></button>
+          <img src={Logo} alt="TeamSight - See Your Team" className="logo"/>
+          <button type="button" className='control' onClick={this.handleClick}>See Your Team</button>
           <div className={contentClass(this.state.isShow)}>
-          <Line data= {this.state.chartData}/>
+          <Line data= {this.state.chartData} options={this.state.options}/>
           </div>
         </div>
       );
