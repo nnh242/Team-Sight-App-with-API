@@ -11,18 +11,7 @@ import {
 const initialState = {
     data: '',
     error: null,
-    members: [{
-        name: 'Example member 1',
-        tasks: [{
-            text: 'Example task 1',
-            estimateTime: 12,
-            actualTime: 16
-        }, {
-            text: 'Example task 2',
-            estimateTime: 1,
-            actualTime: 6
-        }]
-    }]
+    members: []
 }
 
 export default function reducer(state = initialState, action) {

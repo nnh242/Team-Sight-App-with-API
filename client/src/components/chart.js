@@ -9,36 +9,26 @@ function contentClass(isShow) {
     }
     return "content invisible";
   }
-const estimateArray= [];
-function calculateEstimateArray(){
-  for(let i=0; i<this.props.members.length; i++){
-    for(let j=0; j<this.props.members[i].tasks.length; j++){
-      estimateArray.push(this.props.tasks[j].estimateTime);
-    }
-  }
-  return estimateArray;
-}
 
 export class Chart extends React.Component {
+    calculateArray(labelArray,estimateArray,actualArray){
+      for(let i=0; i<this.props.members.length; i++){
+        for(let j=0; j<this.props.members[i].tasks.length; j++){
+          labelArray.push(this.props.members[i].tasks[j].taskName);
+          estimateArray.push(this.props.members[i].tasks[j].estimateTime);
+          actualArray.push(this.props.members[i].tasks[j].actualTime);
+        }
+      }
+      console.log(labelArray,estimateArray,actualArray);
+    }
     constructor(props) {
       super(props);
+      this.labelArray=[];
+      this.estimateArray=[];
+      this.actualArray=[];
+      this.calculateArray(this.labelArray,this.estimateArray,this.actualArray);
       this.state = {
           isShow: false,
-          chartData: {
-              labels: ["task 1", "task 2", "task 3"],
-              datasets: [
-                  {
-                      label: "estimate time",
-                      data: `${estimateArray}`,
-                      borderColor: "white"
-                  },
-                  {
-                    label: "actual time",
-                    data: [2,5,6],
-                    borderColor: "#FF3D00"
-                  }
-              ]
-          },
           options: {
             legend: {
               display: true,
@@ -56,13 +46,31 @@ export class Chart extends React.Component {
       });
     }
     render() {
-
+      this.labelArray=[];
+      this.estimateArray=[];
+      this.actualArray=[];
+      this.calculateArray(this.labelArray,this.estimateArray,this.actualArray);
+      let chartData= {
+          labels: this.labelArray,
+          datasets: [
+              {
+                  label: "estimate time",
+                  data: this.estimateArray,
+                  borderColor: "white"
+              },
+              {
+                label: "actual time",
+                data: this.actualArray,
+                borderColor: "#FF3D00"
+              }
+          ]
+      }
       return (
         <div>
           <img src={Logo} alt="TeamSight - See Your Team" className="logo"/>
           <button type="button" className='control' onClick={this.handleClick}>See Your Team</button>
           <div className={contentClass(this.state.isShow)}>
-          <Line data= {this.state.chartData} options={this.state.options}/>
+          <Line data= {chartData} options={this.state.options}/>
           </div>
         </div>
       );
