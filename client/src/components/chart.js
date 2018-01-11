@@ -61,7 +61,7 @@ export class Chart extends React.Component {
               {
                 label: "actual time",
                 data: this.actualArray,
-                borderColor: "#FF3D00"
+                borderColor: "#FF9800"
               }
           ]
       }
