@@ -16,33 +16,40 @@ export class RegistrationForm extends React.Component {
 
     render() {
         return (
-            <form
-                onSubmit={this.props.handleSubmit(values =>
+            <form onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                <label htmlFor="teamname">Team's name</label>
+                <div className="input-control">
+                <label className="registration-label" htmlFor="teamname">Team's name</label>
                 <Field component={Input} type="text" name="teamname" />
-                <label htmlFor="username">Username</label>
+                </div>
+                <div className="input-control">
+                <label className="registration-label" htmlFor="username">Username</label>
                 <Field
                     component={Input}
                     type="text"
                     name="username"
                     validate={[required, nonEmpty, isTrimmed]}
                 />
-                <label htmlFor="password">Password</label>
+                </div>
+                <div className="input-control">
+                <label className="registration-label" htmlFor="password">Password</label>
                 <Field
                     component={Input}
                     type="password"
                     name="password"
                     validate={[required, length({min: 6, max: 72}), isTrimmed]}
                 />
-                <label htmlFor="passwordConfirm">Confirm password</label>
+                </div>
+                <div className="input-control">
+                <label className="registration-label" htmlFor="passwordConfirm">Confirm password</label>
                 <Field
                     component={Input}
                     type="password"
                     name="passwordConfirm"
                     validate={[required, nonEmpty, matches('password')]}
                 />
+                </div>
                 <button
                     type="submit"
                     disabled={this.props.pristine || this.props.submitting}>

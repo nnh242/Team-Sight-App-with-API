@@ -11,29 +11,36 @@ export function LandingPage(props) {
     }
     return (
         <div className="home-page">
-            <section>
+            <section className="header-with-login">
+            <div>
             <img src={Banner} alt="Team Sight" className="banner"/>
-                <header>
-                    <h3>Manage your team members</h3>
-                </header>
-                <p>TeamSight helps you become aware of what your team members are working on, compare the estimated and actual duration of their tasks. You can use this app to manage tasks and members, and use simple metrics to predict project's duration. </p>
+            <header>
+                <h3>Estimated Time {"<"} Actual Time {"<"}={">"} Optimization.</h3>
+            </header>
+            <p>TeamSight helps you become aware of what your team members are working on by comparing the estimated and actual duration of their tasks.</p>
+            </div>
+            <div>
+            <LoginForm className="login-form" />
+            <button type="button" name="button" className="register-button"><Link to="/register" className="link">Register</Link></button>
+            </div>
             </section>
             <section>
-                <header>
-                    <h3>Assign tasks and members</h3>
-                </header>
-                <img src={TeamScreen} alt="team" className="team-img"/>
-                <p>The key to manage a good project is to define roles and related tasks with smart goals. A constant struggle for a project manager is to gather the current tasks that members are working on and how long they take to complete the tasks.TeamSight provides you with a quick and simple interface that helps you keep track of what your members are working on and how long it takes them to finish.</p>
-            </section>
-            <section>
-                <header>
-                    <h3>Keep track of your progress</h3>
-                </header>
-                <p>Compare the estimated time and actual time of completion for each task for each team member. This simple metric is powerful to see the team member's patterns and plan for optimization.</p>
-            </section>
-            <section>
-            <LoginForm />
-            <Link to="/register">Register</Link>
+                <div className="app-description">
+                  <div>
+                  <img src={TeamScreen} alt="team" className="team-img"/>
+                  </div>
+                  <div className="text-app-description">
+                  <header>
+                      <h3>Keep track of progress</h3>
+                  </header>
+                  <p>This simple chart is powerful to see the prorgressive patterns and plan for optimization.</p>
+                  <header>
+                      <h3>Assign tasks and members</h3>
+                  </header>
+                  <p> A constant struggle for a project manager is to gather the current tasks and predict their time to complete.</p>
+                  <p>TeamSight provides a simple interface that helps to keep track of these metrics.</p>
+                  </div>
+                </div>
             </section>
             <footer>©2017 Made by Tina Hoang - Logo and Banner Made By LogoJoy</footer>
         </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Logo from './logo.png';
 import {Line} from 'react-chartjs-2';
 import {connect} from 'react-redux';
 import './chart.css'
@@ -61,14 +60,13 @@ export class Chart extends React.Component {
               {
                 label: "actual time",
                 data: this.actualArray,
-                borderColor: "#FF9800"
+                borderColor: "#00838f"
               }
           ]
       }
       return (
         <div>
-          <img src={Logo} alt="TeamSight - See Your Team" className="logo"/>
-          <button type="button" className='control' onClick={this.handleClick}>See Your Team</button>
+          <button type="button" className='control' onClick={this.handleClick}>Toggle Chart</button>
           <div className={contentClass(this.state.isShow)}>
           <Line data= {chartData} options={this.state.options}/>
           </div>

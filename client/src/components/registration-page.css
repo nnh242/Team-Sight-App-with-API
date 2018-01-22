@@ -1,9 +1,10 @@
-*{
-    box-sizing: border-box;
-}
 body {
     background-color: #263238;
     color: antiquewhite;
+}
+.logo-button {
+  background-color: #263238 !important;
+  border: none !important;
 }
 .registrationForm h2 {
     text-align: center;
@@ -14,12 +15,12 @@ body {
     border: 1px solid antiquewhite;
     border-radius: 3px;
     max-width: 480px;
-     display: block;
-     margin: 50px auto;
-     text-align: center;
+    display: block;
+    margin: 50px auto;
+    text-align: center;
 }
 .registrationForm input {
-    margin: 20px; 
+    margin: 20px;
     padding: 10px;
     height: 35px;
     width: 200px;
@@ -28,18 +29,34 @@ body {
     border-radius: 3px;
 }
 .registrationForm button {
-    font-size: 17px;
-    height: 40px;
-    background-color: #FF9800;
-    border: 1px solid #FF9800;
+    font-size: 21px;
+    height: 45px;
+    width: 180px;
+    background-color: #00838f;
+    border: 1px solid #00838f;
     border-radius: 2px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+}
+.demo {
+  margin-bottom: 10px;
 }
 .demo a {
     text-decoration: none;
-    color: #FF9800;
+    color: #00838f;
     text-align: center;
 }
 .demo a:visited {
-    color: #FF9800;
+    color: #00838f;
+}
+@media only screen and (min-width:1024px) {
+  .input-control {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+  .registration-label {
+    width: 30%;
+  }
 }

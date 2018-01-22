@@ -1,10 +1,16 @@
 
 h1,h2,h3,h4 {
-  color: #FF9800;
+  color: #00838f;
 }
 button {
-  background-color: #FF9800;
-  color: #222222;
+  background-color: #00838f;
+  color: white;
   font-size: 17px;
 }
-
+button:hover {
+  cursor:pointer;
+  background-color: #006064;
+}
+*{
+    box-sizing: border-box;
+}

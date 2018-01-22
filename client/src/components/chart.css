@@ -1,15 +1,18 @@
+
 .control{
     display: block;
-    margin: auto;
-    background-color: #263238;
-    color: white;
-    border: 1px solid white;
+    margin: 10px auto;
+    padding: 5px;
+    border: 1px solid #00838f;
     border-radius: 5px;
-    box-shadow: 0 2px 0 0 antiquewhite;
+    color: white;
+    width: 160px;
+    height: 45px;
 }
 .content {
     display:block;
     margin: 20px auto;
+    padding: 10px;
     max-width: 90%;
     outline: 1px solid white;
 }

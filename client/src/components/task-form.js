@@ -14,13 +14,13 @@ export default class TaskForm extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
-        
+
         const taskName = this.taskNameInput.value.trim();
-        
+
         const estimateTime = this.estimateTimeInput.value.trim();
-        
+
         const actualTime = this.actualTimeInput.value.trim();
-        
+
         if (taskName && estimateTime && actualTime && this.props.onAdd) {
             this.props.onAdd(this.taskNameInput.value, this.estimateTimeInput.value,this.actualTimeInput.value);
         }
@@ -29,7 +29,7 @@ export default class TaskForm extends React.Component {
         this.estimateTimeInput.value = '';
         this.actualTimeInput.value = '';
     }
-    
+
     setEditing(editing) {
         this.setState({
             editing
@@ -49,8 +49,10 @@ export default class TaskForm extends React.Component {
                 <input type="text" ref={taskName => this.taskNameInput = taskName} placeholder="task's name"/>
                 <input type="number" ref={estimateTime => this.estimateTimeInput = estimateTime} placeholder="estimate time"/>
                 <input type="number" ref={actualTime => this.actualTimeInput = actualTime} placeholder="actual time"/>
-                <button type="submit">Add</button>
-                <button type="button" onClick={() => this.setEditing(false)}>Cancel</button>
+                <div className="task-buttons">
+                  <button type="submit">Add</button>
+                  <button type="button" onClick={() => this.setEditing(false)}>Cancel</button>
+                </div>
             </form>
         );
     }

@@ -39,13 +39,14 @@ export class LoginForm extends React.Component {
                     component={Input}
                     type="password"
                     name="password"
+                    placeholder="at least 6 characters"
                     id="password"
                     validate={[required, nonEmpty]}
                 />
                 <button disabled={this.props.pristine || this.props.submitting}>
                     Log in
                 </button>
-                <p className="demo">Demo's Account Username: demoaccount</p>
+                <p className="demo">Demo: demoaccount</p>
                 <p className="demo">Password: demopassword</p>
             </form>
         );

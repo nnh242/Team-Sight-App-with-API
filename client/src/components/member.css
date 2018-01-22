@@ -1,37 +1,37 @@
 .member {
-    background: #E0E0E0;
-    margin: 10px 10px 0 0px;
-    padding: 8px;
-    min-width: 300px;
-    border-radius: 4px;
-    max-width: 320px;
-    flex-grow: 1;
+  background: #E0E0E0;
+  margin: 10px 10px 0 0px;
+  padding: 8px;
+  min-width: 300px;
+  border-radius: 4px;
+  max-width: 320px;
+  flex-grow: 1;
 }
 .member > .add-button {
   border: 1px solid black;
   border-radius: 3px;
 }
 .member:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .member:last-child {
-    margin-right: 0;
+  margin-right: 0;
 }
 .task-container{
-    display:flex;
-    justify-content: space-between;
+  display: grid;
+  grid-template-columns: 50% 25% 25%;
+  grid-template-row: auto;
+  grid-template-areas: "name est actual";
 }
 .task-name{
-  width: 50%;
+  grid-area: name;
 }
 .est{
- width: 25%;
- text-align: center;
+  grid-area: est;
 }
 .actual{
- width: 25%;
- text-align: center;
+ grid-area: actual;
 }
 .name-container {
   display: flex;
@@ -39,9 +39,9 @@
   justify-content: space-between;
 }
 .delete-member-button {
-  height: 30px;
   margin-top: 15px;
   color: white;
   border: 1px solid;
   border-radius: 3px;
+  padding: 10px;
 }

@@ -1,62 +1,108 @@
 .home-page {
-    font-size: 20px;
-    text-align: center;
-    line-height: 1.5;
-  }
-       
-header {
+  font-size: 20px;
+  text-align: center;
+  line-height: 1.5;
+}
+ header {
   padding: 15px 15px;
 }
-
 section {
   min-height: 200px;
   padding: 30px 15px;
   background-color: #ddd;
   color: #222222;
- 
 }
-
 section:nth-child(odd) {
     background-color: #263238;
-    color: #ddd;
+    color: #dddddd;
 }
-
-p {
-    margin: 0 auto;
-    max-width: 650px;
+.header-with-login > p {
+    text-align: left;
 }
-
 p + p {
     margin-top: 15px;
 }
 footer {
-    padding: 1% 0;
-    background-color: #ddd;
+    padding: 10px;
+    background-color: #dddddd;
     color: #222222;
     text-align: center;
 }
 .banner {
     display:block;
     margin: 0 auto;
-    padding-left: 30px;
     max-height: 200px;
     max-width:85%;
 }
 .login-form input {
-    height: 35px;
+    height: 45px;
+    width: 300px;
     border: 1px black solid;
     border-radius: 3px;
+    margin: 10px;
     padding: 10px;
+    color: #222222;
 }
 .login-form button {
     margin: 6px;
     padding: 5px;
-    border: 1px solid #FF9800;
+    border: 1px solid #00838f;
     border-radius: 5px;
+    color: white;
+    width: 160px;
+    height: 45px;
+    font-size: 21px;
+}
+.register-button {
+  margin: 16px;
+  padding: 5px;
+  border: 1px solid #00838f;
+  border-radius: 5px;
+  color: white;
+  width: 160px;
+  height: 45px;
+}
+.link{
+  text-decoration-color: white;
+  color: white;
+  font-size: 21px;
 }
 .team-img {
     max-width: 320px;
     max-height: 660px;
     border: 1px solid #FAFAFA;
     border-radius: 3px;
+}
+.form-error {
+  color: red;
+}
+/*for tablet landscape and desktop screen*/
+@media only screen and (min-width: 1024px) {
+  .header-with-login {
+    margin: 20px auto;
+    max-width: 80%;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+  }
+  .login-form, .register-button {
+    margin-left: 80px;
+  }
+  .app-description {
+    margin: 20px auto;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .chart-description {
+    max-width: 500px;
+    text-align: left;
+  }
+  .text-app-description {
+    max-width: 500px;
+    text-align: right;
+  }
 }

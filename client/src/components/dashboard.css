@@ -1,23 +1,25 @@
 .header-bar {
     margin: 20px;
 }
-.header-bar button{
-    border: 1px solid #FF9800;
+.logo {
+    padding: 5px;
+    height: 80px;
+    width: 80px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.log-out{
+    border: 1px solid #00838f;
     border-radius: 3px;
-    float: right;
 }
 .dashboard-name {
-    margin-left: 20px;
+    text-align: center;
+    padding: 10px;
 }
 .team h2 {
     text-align: center;
 }
 .members {
     margin: 20px;
-}
-.logo {
-    display: block;
-    margin: 10px auto;
-    height: 80px;
-    width: 80px;
 }
