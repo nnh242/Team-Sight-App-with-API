@@ -15,7 +15,7 @@ export function LandingPage(props) {
             <div>
             <img src={Banner} alt="Team Sight" className="banner"/>
             <header>
-                <h3>Estimated Time {"<"} Actual Time {"<"}={">"} Optimization.</h3>
+                <h3>Actual Time {"<"} Estimates {"<"}={">"} Optimization.</h3>
             </header>
             <p>TeamSight helps you become aware of what your team members are working on by comparing the estimated and actual duration of their tasks.</p>
             </div>

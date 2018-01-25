@@ -3,6 +3,9 @@
     border-radius: 4px;
     height: 45px;
 }
+.add-form {
+  max-width: 320px;
+}
 .add-form > input {
     border: 1px solid #222222;
     border-radius: 4px;
