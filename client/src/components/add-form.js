@@ -8,7 +8,6 @@ export default class AddForm extends React.Component {
         this.state = {
             editing: false
         }
-
         this.onSubmit = this.onSubmit.bind(this);
     }
 

@@ -46,9 +46,12 @@ export default class TaskForm extends React.Component {
         }
         return (
             <form className="task-form" onClick={this.onSubmit} >
-                <input type="text" ref={taskName => this.taskNameInput = taskName} placeholder="task's name"/>
-                <input type="number" ref={estimateTime => this.estimateTimeInput = estimateTime} placeholder="estimate time"/>
-                <input type="number" ref={actualTime => this.actualTimeInput = actualTime} placeholder="actual time"/>
+                <lable htmlFor="task-name">Task </lable>
+                <input name="task-name" type="text" ref={taskName => this.taskNameInput = taskName} placeholder="testing"/>
+                <lable htmlFor="estimateTime">Estimate (#hrs)</lable>
+                <input name="estimateTime"type="number" ref={estimateTime => this.estimateTimeInput = estimateTime} placeholder="2"/>
+                <lable htmlFor="actualTime">Actual Time(#hrs)</lable>
+                <input name="actualTime" type="number" ref={actualTime => this.actualTimeInput = actualTime} placeholder="12"/>
                 <div className="task-buttons">
                   <button type="submit">Add</button>
                   <button type="button" onClick={() => this.setEditing(false)}>Cancel</button>
