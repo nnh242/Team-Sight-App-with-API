@@ -31,7 +31,6 @@ export const addMemberError = error => ({
 
 export const deleteMember = (accId,memId) => (dispatch, getState) =>  {
   const authToken = getState().auth.authToken;
-  console.log(accId,memId);
   return fetch(`/api/accounts/${accId}/members/${memId}`, {
       method: 'DELETE',
       body: {accountId:accId,memId:memId},
@@ -92,7 +91,6 @@ export const addTask = (accId, memId, taskName, estimateTime, actualTime)=> (dis
         .then(res => normalizeResponseErrors(res))
         .then(res => {console.log(res); return res.json()})
         .then(newTask => {
-            console.log(newTask, 'this is inside addTask new task');
             dispatch(addTaskSuccess(newTask,memId))})
         .then(
             setTimeout( ()=>{

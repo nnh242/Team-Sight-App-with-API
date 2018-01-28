@@ -18,7 +18,6 @@ export class Chart extends React.Component {
           actualArray.push(this.props.members[i].tasks[j].actualTime);
         }
       }
-      console.log(labelArray,estimateArray,actualArray);
     }
     constructor(props) {
       super(props);
