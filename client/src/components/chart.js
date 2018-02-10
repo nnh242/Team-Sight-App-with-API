@@ -29,7 +29,7 @@ export class Chart extends React.Component {
           isShow: false,
           options: {
             legend: {
-              display: true,
+              display: false,
               labels: {
                 fontColor: "white"
               }
