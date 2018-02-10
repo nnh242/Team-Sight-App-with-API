@@ -18,6 +18,7 @@ export default class AddForm extends React.Component {
             this.props.onAdd(this.textInput.value);
         }
         this.textInput.value = '';
+        this.closeForm();
     }
 
     setEditing(editing) {
@@ -25,7 +26,9 @@ export default class AddForm extends React.Component {
             editing
         });
     }
-
+    closeForm() {
+      this.setEditing(false)
+    }
     render() {
         if (!this.state.editing) {
             return (
@@ -40,7 +43,7 @@ export default class AddForm extends React.Component {
             <form className="task add-form" onSubmit={this.onSubmit}>
                 <input type="text" ref={input => this.textInput = input} />
                 <button>Add</button>
-                <button type="button" onClick={() => this.setEditing(false)}>Cancel</button>
+                <button type="button" onClick={this.closeForm}>Cancel</button>
             </form>
         );
     }
