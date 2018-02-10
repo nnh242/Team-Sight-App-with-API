@@ -3,19 +3,18 @@
     border-radius: 4px;
     height: 45px;
 }
-.add-form {
-  max-width: 320px;
-}
 .add-form > input {
     border: 1px solid #222222;
     border-radius: 4px;
     padding: 3px;
-    max-width: 166px;
+    max-width: 180px;
+    width: 100%;
     margin-right: 2px;
     height: 40px;
 }
 .add-form > button {
   height: 40px;
+  padding: 10px;
 }
 .add-button a {
     text-decoration: none;
@@ -24,11 +23,12 @@
 .team > .add-button {
     border: 1px solid;
     border-radius: 3px;
-    min-width: 200px;
     background: #FAFAFA;
-    max-width: 320px;
     height: 45 px;
-    margin: 20px;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 100%;
+    width: 340px;
 }
 
 .team > .add-button:hover {

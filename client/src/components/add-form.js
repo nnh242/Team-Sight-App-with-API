@@ -43,7 +43,7 @@ export default class AddForm extends React.Component {
             <form className="task add-form" onSubmit={this.onSubmit}>
                 <input type="text" ref={input => this.textInput = input} />
                 <button>Add</button>
-                <button type="button" onClick={this.closeForm}>Cancel</button>
+                <button type="button" onClick={()=>{this.setEditing(false)}}>Cancel</button>
             </form>
         );
     }

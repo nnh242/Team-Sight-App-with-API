@@ -13,7 +13,7 @@
     display:block;
     margin: 20px auto;
     padding: 10px;
-    max-width: 90%;
+    width: 80%;
     outline: 1px solid white;
 }
 .control:hover {
@@ -21,4 +21,10 @@
 }
 .invisible {
     display: none;
+}
+@media only screen and (max-width:340px){
+  .content{
+    width: 100%;
+    max-width: 330px;
+  }
 }

@@ -4,9 +4,10 @@
     flex-wrap:wrap;
 }
 .team> form {
-    max-width: 300px;
-    margin: 20px;
-    padding: 10px;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 100%;
+    width: 340px;
 }
 .team > form > button {
     margin: 2px;
