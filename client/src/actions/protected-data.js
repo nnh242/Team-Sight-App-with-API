@@ -89,7 +89,7 @@ export const addTask = (accId, memId, taskName, estimateTime, actualTime)=> (dis
         }
     })
         .then(res => normalizeResponseErrors(res))
-        .then(res => {console.log(res); return res.json()})
+        .then(res => {return res.json()})
         .then(newTask => {
             dispatch(addTaskSuccess(newTask,memId))})
         .then(

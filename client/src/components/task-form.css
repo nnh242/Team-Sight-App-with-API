@@ -9,7 +9,7 @@
     height: 28px;
     margin-top: 6px;
     margin-bottom: 6px;
-    padding: 2px;
+    padding: 10px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -17,7 +17,9 @@
     height: 40px;
     color: #aaaaaa;
 }
-
+.task-form input:focus{
+  color: #222222;
+}
 .task-form button {
     font-size: 17px;
     border: 1px solid #00838f;
