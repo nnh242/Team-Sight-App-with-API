@@ -28,12 +28,16 @@ export default class TaskForm extends React.Component {
         this.taskNameInput.value = '';
         this.estimateTimeInput.value = '';
         this.actualTimeInput.value = '';
+        this.closeTaskForm();
     }
 
     setEditing(editing) {
         this.setState({
             editing
         });
+    }
+    closeTaskForm() {
+      this.setEditing(false);
     }
     render() {
         if (!this.state.editing) {
@@ -45,7 +49,7 @@ export default class TaskForm extends React.Component {
             );
         }
         return (
-            <form className="task-form" onClick={this.onSubmit} >
+            <form className="task-form" onSubmit={this.onSubmit} >
                 <label htmlFor="task-name">Task </label>
                 <input name="task-name" type="text" ref={taskName => this.taskNameInput = taskName} placeholder="testing"/>
                 <label htmlFor="estimateTime">Estimate (#hrs)</label>

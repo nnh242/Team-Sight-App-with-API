@@ -96,7 +96,7 @@ export const addTask = (accId, memId, taskName, estimateTime, actualTime)=> (dis
             setTimeout( ()=>{
                 dispatch(fetchProtectedData(accId))
             }
-            ,1000))
+            ,250))
         .catch(err => {
             dispatch(addTaskError(err));
         });
