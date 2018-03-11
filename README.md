@@ -9,7 +9,7 @@ This project is bootstrapped from Create-React-App.
 Team Sight helps you become aware of what your team members are working on by comparing the estimated and actual duration of their tasks. Actual Time < Estimates <=> Optimization. Once you enter all the tasks, data will be updated to a simple but powerful chart that allow you to see the progressive patterns and plan for optimization. It's dead simple and easy to use. Watch this:
 
 <p align="center">
-  <img width="800" height="600" src ="https://raw.githubusercontent.com/nnh242/Team-Sight-App-with-API/deploy-branch/public/teamsight-play.gif">
+  <img src ="https://raw.githubusercontent.com/nnh242/Team-Sight-App-with-API/deploy-branch/public/teamsight-play.gif">
 </p>
 
 ## Getting Started
