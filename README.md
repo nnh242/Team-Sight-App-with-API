@@ -2,8 +2,11 @@
 
 This project is bootstrapped from Create-React-App.
 
-Team Sight helps you become aware of what your team members are working on by comparing the estimated and actual duration of their tasks. Actual Time < Estimates <=> Optimization. Once you enter all the tasks, data will be updated to a simple but powerful chart that allow you to see the progressive patterns and plan for optimization.
+<p align="center">
+  <img width="460" height="300" src="https://raw.githubusercontent.com/nnh242/Team-Sight-App-with-API/deploy-branch/public/banner.png">
+</p>
 
+Team Sight helps you become aware of what your team members are working on by comparing the estimated and actual duration of their tasks. Actual Time < Estimates <=> Optimization. Once you enter all the tasks, data will be updated to a simple but powerful chart that allow you to see the progressive patterns and plan for optimization.
 
 ## Getting Started
 
@@ -13,7 +16,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 Things you need to install the software and how to install them:
 node.js -- download it [here](https://nodejs.org/en/)
-create-react-app
+
+You will also need to install this create-react-app on global.
 
 ```
 npx create-react-app my-app
@@ -28,6 +32,15 @@ You will need to install all dependencies once you clone/download the app.
 ```
 npm install
 ```
+### Running the App
+Just click the live link: (team-sight.herokuapp.com)  . Why bother going through this boring documentation to set this up locally? No? Okay, see below:
+Since this project has both the server and the client in the same repo, you may need something like:
+
+```
+npm start
+```
+The start script will run both the server.js and client.js concurrently.
+Sounds cool? I learned how to run these concurrently here: (https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/)
 
 ## Running the tests
 
