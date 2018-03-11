@@ -11,10 +11,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Things you need to install the software and how to install them
+Things you need to install the software and how to install them:
+node.js -- download it [here](https://nodejs.org/en/)
+create-react-app
 
 ```
-Give examples
+npx create-react-app my-app
+cd my-app
+npm start
 ```
 
 ### Installing
@@ -40,13 +44,16 @@ npm test
 
 ## Deployment
 
-Heroku :) it's on a free dyno now, please be patient, it'll take a few minutes to wake up.
+[Heroku](https://www.fullstackreact.com/articles/deploying-a-react-app-with-a-server/) :) it's on a free dyno now, please be patient, it'll take a few minutes to wake up.
 
 ## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* Love
+* [React](https://github.com/facebook/create-react-app/blob/master/README.md#getting-started) - The front-end library used
+* [Redux](https://redux.js.org/) - State Management and [Redux Form](https://redux-form.com/7.3.0/) was fun (not)
+* [JWT authentication](https://jwt.io/) - Token Authentication
+* [Node](https://nodejs.org/en/) - Server
+* [Express](https://expressjs.com/) - web framework , API
+* [MongoDB](https://www.mongodb.com/) - Database
 
 ## Authors
 
