@@ -17,7 +17,7 @@ export function LandingPage(props) {
             <header>
                 <h3>Actual Time {"<"} Estimates {"<"}={">"} Optimization.</h3>
             </header>
-            <p>TeamSight helps you become aware of what your team members are working on by comparing the estimated and actual duration of their tasks.</p>
+            <p>Team Sight helps you become aware of what your team members are working on by comparing the estimated and actual duration of their tasks.</p>
             </div>
             <div>
             <LoginForm className="login-form" />
@@ -33,7 +33,7 @@ export function LandingPage(props) {
                   <header>
                       <h3>Keep track of progress</h3>
                   </header>
-                  <p>This simple chart is powerful to see the prorgressive patterns and plan for optimization.</p>
+                  <p>This simple chart is powerful to see the progressive patterns and plan for optimization.</p>
                   <header>
                       <h3>Assign tasks and members</h3>
                   </header>
