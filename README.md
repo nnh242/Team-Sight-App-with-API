@@ -1,6 +1,6 @@
 # Team Sight - See Your Team
 
-This project is bootstrapped from Create-React-App.
+This project is bootstrapped from Create-React-App. Live LINK: https://team-sight.herokuapp.com/
 
 <p align="center">
   <img width="460" height="300" src="https://raw.githubusercontent.com/nnh242/Team-Sight-App-with-API/deploy-branch/public/banner.png">
